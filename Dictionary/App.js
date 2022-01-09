@@ -1,30 +1,18 @@
-
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeNavigation from './src/Navigation/HomeNavigation';
 
 
-const App = () => {
-
+const  App = () => {
   return (
-    <SafeAreaView >
-      <View>
-        <Text>
-          Dictionary App
-        </Text>
-      </View>
-    </SafeAreaView>
+
+
+   <NavigationContainer>
+      <HomeNavigation/>
+    </NavigationContainer>
+
+
   );
-};
+}
 
-const styles = StyleSheet.create({
-
-});
-
-export default App;
+export default App
