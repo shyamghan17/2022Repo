@@ -20,8 +20,6 @@ const SearchScreen = ({navigation}) => {
 
       </ScrollView>
     </>
-
-
   );
 };
 
