@@ -1,0 +1,20 @@
+
+const mongoUri = 'mongodb+srv://shyamghan17:Mithila@12@cluster0.nzvke.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mangoose.connect(mongoUri, {
+  userNewUrlParser:true,
+  useCreateIndex: true
+});
+mongoose.connection.on('connected', ()=>{
+  console.log('connected to mongo instance')
+})
+mongoose.connection.on('error', (err)=>{
+  console.error('error occured during ocnnection')
+})
+
+
+app.get('/', (req, res)=>{
+  res.send('hi there, this is radhey')
+})
+app.listen(3000, ()=>{
+  console.log('Listening on port 3000')
+})
