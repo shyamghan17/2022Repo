@@ -74,7 +74,7 @@ const LoginForm = ({ navigation }) => {
       {renderButton()}
 
       <TouchableOpacity onPress={() => navigation.navigate("Sign Up")}>
-        <Text>Already Have a account</Text>
+        <Text>I don't Have a account</Text>
       </TouchableOpacity>
     </View>
   );
