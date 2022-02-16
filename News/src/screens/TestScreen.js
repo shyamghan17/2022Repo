@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Modal, TouchableOpacity,SafeAreaView } from "react-native";
 import React, { useState } from "react";
 
-const TestScreen = ({ visible, close, item }) => {
+const TestScreen = ({ visible, close, item,onPress }) => {
   return (
     <SafeAreaView>
 

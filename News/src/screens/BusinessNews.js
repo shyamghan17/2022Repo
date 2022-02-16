@@ -7,13 +7,15 @@ import {
   View,
   Text
 } from "react-native";
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import NewsCard from "../components/NewsCard";
 import DataContext from "../context/DataContext";
 import { useFocusEffect } from "@react-navigation/native";
+import TestScreen from "./TestScreen";
 
 const BusinessNews = ({ navigation }) => {
   const { news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
+  //  const [modal , setModal ] = useState(false)
 
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
@@ -40,7 +42,7 @@ const BusinessNews = ({ navigation }) => {
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity >
               <NewsCard
                 title={item.title}
                 description={item.description}

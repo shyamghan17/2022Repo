@@ -33,18 +33,18 @@ const BottomTab = () => {
 };
 function App() {
   return (
-  // <>
-  //   <DataProvider>
+  <>
+    <DataProvider>
 
-  //     <NavigationContainer>
-  //       <BottomTab />
-  //     </NavigationContainer>
+      <NavigationContainer>
+        <BottomTab />
+      </NavigationContainer>
      
 
-  //   </DataProvider>
-  //   </>
+    </DataProvider>
+    </>
 
-  <ModalTest/>
+  // <ModalTest/>
   );
 }
 
