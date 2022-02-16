@@ -1,23 +1,23 @@
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Modal, TouchableOpacity,SafeAreaView } from "react-native";
 import React, { useState } from "react";
 
 const TestScreen = ({ visible, close, item }) => {
   return (
-    <View style={{ marginTop: 100 }}>
-      <Text> thisis test screen </Text>
+    <SafeAreaView>
 
-      <Modal animationType="fade" visible={visible} onRequestClose={() => {}}>
-        <View style={{ marginTop: 100 }}>
+      <Modal animationType="fade" visible={visible} onRequestClose={() => {}} >
+        
+        <View style={{ backgroundColor:'red', flex:1 }}>
           <Text>hello this is form modal</Text>
           <Text>
-            {/* {item.article} */}
+           Hello World
           </Text>
           <TouchableOpacity onPress={() => close()}>
-            <Text>press me</Text>
+            <Text>press me to close</Text>
           </TouchableOpacity>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 

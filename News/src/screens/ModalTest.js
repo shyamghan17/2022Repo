@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from "react-native";
 import React, {useState} from "react";
 import TestScreen from "./TestScreen";
 
@@ -6,8 +6,8 @@ const ModalTest = () => {
   const [modelVisible, setModelVisible] = useState(false);
 
   return (
-    <View style={{ marginTop: 100 }}>
-      <Text> modal page </Text>
+    <SafeAreaView >
+
       <TouchableOpacity onPress={()=> setModelVisible(true)}>
         <Text>press me to seee modal </Text>
       </TouchableOpacity>
@@ -15,7 +15,7 @@ const ModalTest = () => {
       visible={modelVisible}
       close={()=> setModelVisible(false)}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

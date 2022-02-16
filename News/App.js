@@ -8,7 +8,8 @@ import DetailView from "./src/components/DetailView";
 import Technology from "./src/screens/Technology";
 import { DataProvider } from "./src/context/DataContext";
 import * as CONSTANT from './src/Constant/Constant'
-import { SafeAreaView } from "react-native";
+import ModalTest from "./src/screens/ModalTest";
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,16 +33,18 @@ const BottomTab = () => {
 };
 function App() {
   return (
-  <>
-    <DataProvider>
+  // <>
+  //   <DataProvider>
 
-      <NavigationContainer>
-        <BottomTab />
-      </NavigationContainer>
+  //     <NavigationContainer>
+  //       <BottomTab />
+  //     </NavigationContainer>
      
 
-    </DataProvider>
-    </>
+  //   </DataProvider>
+  //   </>
+
+  <ModalTest/>
   );
 }
 

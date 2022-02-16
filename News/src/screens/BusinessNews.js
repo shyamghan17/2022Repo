@@ -4,30 +4,41 @@ import {
   FlatList,
   SafeAreaView,
   Dimensions,
-  Animated
+  View,
+  Text
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import NewsCard from "../components/NewsCard";
 import DataContext from "../context/DataContext";
+import { useFocusEffect } from "@react-navigation/native";
 
 const BusinessNews = ({ navigation }) => {
-
-  const news = useContext(DataContext);
+  const { news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
 
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
 
+  useFocusEffect(
+    useCallback(() => {
+      setHeadings(
+        "everything?domains=wsj.com&apiKey=860b85233a5f46a9a2b3b256b5f708e1"
+      );
+      getBusinessNewsFromApi()
+      // console.log("focused effect");
+      // Do something when the screen is focused
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+
+
       <FlatList
-     
         data={news.articles}
         keyExtractor={(item, index) => "key" + index}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
-        
           return (
             <TouchableOpacity>
               <NewsCard
@@ -36,11 +47,6 @@ const BusinessNews = ({ navigation }) => {
                 author={item.author}
                 image={item.urlToImage}
               />
-              {/* <TestScreen
-                visible={modelVisible}
-                close={setModelVisible(false)}
-                item={modalData}
-              /> */}
             </TouchableOpacity>
           );
         }}
@@ -52,8 +58,8 @@ const BusinessNews = ({ navigation }) => {
 export default BusinessNews;
 
 const styles = StyleSheet.create({
-  safeAreaView:{
-    flex:1,
-    backgroundColor:'#032000'
+  safeAreaView: {
+    flex: 1,
+    backgroundColor: "#032000"
   }
 });

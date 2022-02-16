@@ -5,13 +5,23 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import NewsCard from "../components/NewsCard";
 import DataContext from "../context/DataContext";
-
+import { useFocusEffect } from "@react-navigation/native";
 
 const TopHeadings = ({ navigation }) => {
-  const news = useContext(DataContext);
+  const { news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      setHeadings(
+        "top-headlines?country=us&category=business&apiKey=860b85233a5f46a9a2b3b256b5f708e1"
+      );
+      getBusinessNewsFromApi();
+      // Do something when the screen is focused
+    }, [])
+  );
 
   return (
     <SafeAreaView>
