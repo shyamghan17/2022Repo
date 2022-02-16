@@ -4,14 +4,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginForm from "../screens/Authintication/LoginForm";
 import SignUpForm from "../screens/Authintication/SignUpForm";
 const Stack = createNativeStackNavigator();
+import HomeScreen from "../screens/HomeScreen";
 
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator 
-      >
-        <Stack.Screen  name="Login" component={LoginForm} />
+      <Stack.Navigator>
+      <Stack.Screen name="Home Screen" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginForm} />
         <Stack.Screen name="Sign Up" component={SignUpForm} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

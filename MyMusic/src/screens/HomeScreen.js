@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 import DataContex from "../context/DataContex";
 const HomeScreen = () => {
+  
  const album = createContext(DataContex)
  console.log(album,'albums')
 

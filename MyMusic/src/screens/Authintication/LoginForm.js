@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextInput, Button, ActivityIndicator } from "react-native-paper";
 import { auth } from "./firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+
+
 
 const LoginForm = ({ navigation }) => {
   const [isSignIn, setIsSignIn] = useState(false);

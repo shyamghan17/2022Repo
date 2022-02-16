@@ -11,17 +11,6 @@ const firebaseConfig = {
   appId: "1:919727678600:web:f81ef395f8b7bba4f76b3d",
   measurementId: "G-9ME2Z027XT"
 };
-// onAuthStateChanged(auth, (user) => {
-//     if (user) {
-      
-//       const uid = user.uid;
-    
-//     } else {
-//      console.log('hello world ')
-        
-//     }
-//   });
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
