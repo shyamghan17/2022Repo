@@ -1,0 +1,39 @@
+ {
+  "project_info": {
+    "project_number": "64268956202",
+    "project_id": "workreap-a2162",
+    "storage_bucket": "workreap-a2162.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64268956202:android:55162e1523fd16d25ec953",
+        "android_client_info": {
+          "package_name": "to.uiz.employee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64268956202-b4t48hc4vs87vatvcup5uouvft266omb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3fxAdA6WNgGvS4DojAWwTWS0g3Ps7isk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64268956202-b4t48hc4vs87vatvcup5uouvft266omb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
