@@ -10,8 +10,9 @@ import {
 import React, { useContext, useCallback, useState } from "react";
 import NewsCard from "../components/NewsCard";
 import DataContext from "../context/DataContext";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, StackActions } from "@react-navigation/native";
 import TestScreen from "./TestScreen";
+import * as CONSTANT from '../Constant/Constant'
 
 const BusinessNews = ({ navigation }) => {
   const { news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
@@ -42,12 +43,12 @@ const BusinessNews = ({ navigation }) => {
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity >
+            <TouchableOpacity onPress={()=>  navigation.navigate(CONSTANT.DETAILVIEW, {item})}>
               <NewsCard
-                title={item.title}
-                description={item.description}
-                author={item.author}
-                image={item.urlToImage}
+                title='Manisha'
+                description='I Love You'
+                author='Love you Baby'
+                image ={require('../../assets/51BpyaddPoL.jpeg')}
               />
             </TouchableOpacity>
           );

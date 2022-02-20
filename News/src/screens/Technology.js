@@ -2,7 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert, FlatList } fro
 import React, { useContext, useCallback } from "react";
 import DataContext from "../context/DataContext";
 import NewsCard from "../components/NewsCard";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, StackActions } from "@react-navigation/native";
+import * as CONSTANT from '../Constant/Constant'
 
 const Technology = ({navigation}) => {
   const {news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
@@ -26,7 +27,7 @@ const Technology = ({navigation}) => {
           return (
             // <ParallaxScrollView>
             <TouchableOpacity
-              onPress={() => navigation.navigate("detail", { item })}
+              onPress={()=>  navigation.dispatch(StackActions.push(CONSTANT.DETAILVIEW, {item}))}
             >
               <NewsCard
                 title={item.title}

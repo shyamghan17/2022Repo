@@ -22,7 +22,7 @@ const NewsCard = ({ title, author, description, image }) => {
       </Text>
       {image == null
         ? <ActivityIndicator />
-        : <Image style={styles.image} source={{ uri: image }} />}
+        : <Image style={styles.image} source={image} />}
       <Text style={styles.description}>
         {description}
       </Text>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     color: "#232323"
   },
   image: {
-    height: height / 4,
+    height: height / 2,
+    width:'99%',
     margin: 1.5,
     borderRadius: 8
   }

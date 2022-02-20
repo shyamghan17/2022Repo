@@ -8,7 +8,8 @@ import {
 import React, { useContext, useCallback } from "react";
 import NewsCard from "../components/NewsCard";
 import DataContext from "../context/DataContext";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, StackActions } from "@react-navigation/native";
+import * as CONSTANT from '../Constant/Constant'
 
 const TopHeadings = ({ navigation }) => {
   const { news, setHeadings, getBusinessNewsFromApi } = useContext(DataContext);
@@ -32,7 +33,7 @@ const TopHeadings = ({ navigation }) => {
           return (
             // <ParallaxScrollView>
             <TouchableOpacity
-              onPress={() => navigation.navigate("detail", { item })}
+            onPress={()=>  navigation.dispatch(StackActions.push(CONSTANT.DETAILVIEW, {item}))}
             >
               <NewsCard
                 title={item.title}

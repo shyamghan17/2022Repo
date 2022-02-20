@@ -17,7 +17,7 @@ const StackTab = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={CONSTANT.STACK} component={BusinessNews} />
-      <Stack.Screen name={CONSTANT.NEWS}component={DetailView} />
+      <Stack.Screen name={CONSTANT.DETAILVIEW}component={DetailView} />
     </Stack.Navigator>
   );
 };
