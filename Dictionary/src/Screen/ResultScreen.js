@@ -1,19 +1,14 @@
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import * as CONSTANT from "../Constant/NavigationString";
 
-import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import * as CONSTANT from '../Constant/NavigationString';
-
-
-
-const ResultScreen = ({navigation}) => {
+const ResultScreen = ({ navigation }) => {
   return (
     <View>
       <Text>Result Screen</Text>
-      <TouchableOpacity onPress={()=>navigation.navigate(CONSTANT.Search)}>
-            <Text>press me </Text>
-        </TouchableOpacity>
-
-
+      <TouchableOpacity onPress={() => navigation.navigate(CONSTANT.Search)}>
+        <Text>press me </Text>
+      </TouchableOpacity>
     </View>
   );
 };

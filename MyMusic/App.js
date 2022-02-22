@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Navigator from "./src/navigation/Navigator";
+import { DataProvider } from "./src/context/DataContex";
 
 const App = () => {
 
 
   return (
-   <>
-   <Navigator/>
-   </>
+<DataProvider>
+<Navigator/>
+</DataProvider>
+
+
   );
 };
 
