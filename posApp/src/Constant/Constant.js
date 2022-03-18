@@ -1,0 +1,1 @@
+export const NumberOfTable= 6
