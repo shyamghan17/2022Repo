@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-const MenuList = ({ value, price }) => {
+const MenuComponent = ({ value, price }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.menuText}>
@@ -15,7 +15,7 @@ const MenuList = ({ value, price }) => {
   );
 };
 
-export default MenuList;
+export default MenuComponent;
 
 const styles = StyleSheet.create({
   container: {
