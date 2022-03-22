@@ -7,54 +7,63 @@ import {
   FlatList,
   Image,
   Dimensions,
-  SectionList
+
 } from "react-native";
-import React from "react";
+import React, {useState} from "react";
+import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
-import MenuComponent from "../components/MenuComponent";
+
 import Title from "../components/Title";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+
+
 const PrintScreen = ({ navigation, route }) => {
   const item = route.params;
+ const [status, setStatus] = useState('MainCourse')
+ const [dataList, setDataList] = useState(MENU.ItemList)
+ 
+ const setStatusFilter = status =>{
+   if(status !== "MainCourse"){
+     setDataList([...MENU.ItemList.filter(e=>e.status === status)])
+   }else {
+     setDataList(MENU.ItemList)
+   }
+   setStatus(status)
+ }
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+ console.log(dataList, 'tata slist');
+
+ const renderItem =({item, index})=>{
+return(
+  <View >
+  <Text>{item.name}</Text>
+  <Text>{item.price}</Text>
+
+
   </View>
-);
+)
+ }
   return (
     <SafeAreaView>
-      <View style={{flexDirection:'column'}}>
-        <View>
-          <Title title={"Section list"} />
-        </View>
-        <View style={styles.menuContainer}>
-          <Title title={"Ctegories"} />
-
-          <SectionList
-         
-      sections={MENU.ItemList}
-      keyExtractor={(item) => item.id }
-      renderItem={({ item }) => <Item title={item.} />}
-      renderSectionHeader={({ section: { title } }) => (
-        <Text style={styles.header}>{title}</Text>
-      )}
-    />
-        </View>
-
-        <View style={styles.imageContainer}>
-        <TouchableOpacity onPress={()=>navigation.navigate('Print')}>
-        <Image
-            style={styles.imageStyle}
-            source={require("../images/cart.png")}
-          />
+      <View style={styles.categoriesList}>
+      {CATEGORY.CategoriesList.map(e=>(
+        <TouchableOpacity
+        style={[styles.btn, status === e.status && styles.btnActive]}
+        onPress={()=> setStatusFilter(e.status)}>
+          <Text>{e.status}</Text>
         </TouchableOpacity>
+      ))}
        
-        </View>
       </View>
+      <FlatList
+      data={dataList}
+      keyExtractor={item => item.id}
+      renderItem={renderItem}
+
+      />
      
     </SafeAreaView>
   );
@@ -83,16 +92,13 @@ alignItems:'center',
     height: 64,
     width: 64
   },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8
+  categoriesList:{
+
   },
-  header: {
-    fontSize: 32,
-    backgroundColor: "#fff"
+  btn:{
+    backgroundColor:'red',
   },
-  title: {
-    fontSize: 24
+  btnActive:{
+    backgroundColor:'green'
   }
 });
