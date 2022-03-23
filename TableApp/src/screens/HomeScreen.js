@@ -5,42 +5,61 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
+  VirtualizedList,
+  ScrollView
 } from "react-native";
 import React from "react";
 import * as COLOR from "../components/Colors";
 import Title from "../components/Title";
-import  *as TABLE from '../data/TablesList'
-
-
+import * as TABLE from "../data/TablesList";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View>
-          <Title title={'List of Tables'}/>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "95%",
+            marginVertical: 10,
 
+            paddingHorizontal: 10,
+            backgroundColor: COLOR.BUTTON_BACKGROUND,
+            borderRadius: 10
+          }}
+        >
+          <Title title={"List of Tables"} />
+
+          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+            <Image
+              style={styles.imageStyle}
+              source={require("../images/cart1.png")}
+            />
+          </TouchableOpacity>
         </View>
+
         <FlatList
           data={TABLE.TablesList}
-          numColumns={2}
-          scrollEnabled={false}
-          //   horizontal
+          numColumns={3}
+          showsVerticalScrollIndicator={false}
+          horizontal={false}
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Categories", { item })}
+              onPress={() =>
+                navigation.navigate("Categories", { tableNo: item.title })}
             >
               <View style={styles.tableView}>
-                <Text>
+                <Text style={styles.tableText}>
                   {item.title}
                 </Text>
               </View>
             </TouchableOpacity>}
         />
       </View>
-     
     </SafeAreaView>
   );
 };
@@ -51,14 +70,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20
+    backgroundColor: COLOR.HOME_BACKGROUND,
+    height: "100%"
   },
   tableView: {
     backgroundColor: COLOR.TABLE_BACKGROUND,
-    margin: 5,
-    padding: 5,
-    height: 120,
-    width: 120,
+    margin: 8,
+    height: 100,
+    width: 100,
     borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
@@ -68,5 +87,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { width: 2, height: 4 },
     shadowRadius: 3
+  },
+  imageStyle: {
+    height: 30,
+    width: 30
+  },
+  tableText: {
+    color: COLOR.TABLE_TEXT,
+    fontSize: 18,
+    fontWeight: "500"
   }
 });

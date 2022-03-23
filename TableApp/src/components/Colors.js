@@ -1,6 +1,6 @@
 //Button Colors
 export const IconClo = "#36393B";
-export const BorderClo = "#A5D8FF";
+export const BorderClo = "#36393B";
 export const IconColor = "#BFB6BB";
 export const SHADOWCOLOR = "#DF6353";
 
@@ -10,4 +10,37 @@ export const OPTIONS_COLOR = "#EFA99F";
 export const SHADOWCOLORS = "#F5F5F5";
 export const BUTTON_TEXT = "#F5A65B";
 export const WHITE = "#ffffff";
-export const TABLE_BACKGROUND = "red";
+export const TABLE_BACKGROUND = "#0F070D";
+export const TABLE_TEXT = "#FFFFFF";
+export const BORDER_COLOR = "#000000";
+
+
+
+
+
+{CATEGORY.CategoriesList.map(elements =>
+    <View style={styles.categoryContainer}>
+      <TouchableOpacity
+        style={[
+          styles.btn,
+          status === elements.status && styles.btnActive
+        ]}
+        onPress={() => setStatusFilter(elements.status)}
+      >
+        <View>
+          <Text>
+            {elements.status}
+          </Text>
+          <FlatList
+            data={elements.status}
+            keyExtractor={(item)=>item.status}
+            renderItem={()=>{
+              <View>
+                <Text>{elements.status}</Text>
+              </View>
+            }}
+          /> 
+        </View>
+      </TouchableOpacity>
+    </View>
+  )}

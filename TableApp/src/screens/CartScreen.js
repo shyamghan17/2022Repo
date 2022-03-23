@@ -1,16 +1,45 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  FlatList
+} from "react-native";
 import React from "react";
 import Title from "../components/Title";
-import ButtonComponent from "../components/ButtonComponent";
 
-const CartScreen = ({navigation}) => {
+const CartScreen = ({ navigation, route }) => {
+  const  cart  = route.params;
+
+  console.log(cart);
+
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity>
+        <View key={item.id} style={styles.itemList}>
+          <Text>
+            {item}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <SafeAreaView>
-    <Title  title={'Cart'}/>
       <View style={styles.container}>
-     <ButtonComponent label={"go to menu"}/>
-     <ButtonComponent onPress={()=> navigation.navigate('Print')} label={"print"}/>
-
+        <Title title={"Cart"} />
+        <TouchableOpacity onPress={() => navigation.navigate("Print")}>
+          <Image
+            style={styles.imageStyle}
+            source={require("../images/print.png")}
+          />
+        </TouchableOpacity>
+      </View>
+      <View>
+        {/* <FlatList renderItem={renderItem} /> */}
       </View>
     </SafeAreaView>
   );
@@ -19,10 +48,13 @@ const CartScreen = ({navigation}) => {
 export default CartScreen;
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection:'row',
-    justifyContent:'space-around'
-
-
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  imageStyle: {
+    height: 30,
+    width: 30
   }
 });
