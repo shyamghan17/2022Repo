@@ -68,7 +68,7 @@ export const CategoriesList = [
     imageUrl: "images/hotdrinks.jpg"
   },
   {
-    status: "Long Drinks",
+    status: "Long pos",
     imageUrl: "images/longdrink.jpg"
   }
 ];

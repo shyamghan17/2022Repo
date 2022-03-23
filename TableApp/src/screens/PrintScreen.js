@@ -6,65 +6,70 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Dimensions,
-
+  Dimensions
 } from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
+import * as COLOR from "../components/Colors";
 
 import Title from "../components/Title";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-
-
 const PrintScreen = ({ navigation, route }) => {
   const item = route.params;
- const [status, setStatus] = useState('MainCourse')
- const [dataList, setDataList] = useState(MENU.ItemList)
- 
- const setStatusFilter = status =>{
-   if(status !== "MainCourse"){
-     setDataList([...MENU.ItemList.filter(e=>e.status === status)])
-   }else {
-     setDataList(MENU.ItemList)
-   }
-   setStatus(status)
- }
+  const [status, setStatus] = useState("All");
+  const [dataList, setDataList] = useState(MENU.ItemList);
 
- console.log(dataList, 'tata slist');
+  const setStatusFilter = status => {
+    if (status !== "All") {
+      setDataList([...MENU.ItemList.filter(e => e.status === status)]);
+    } else {
+      setDataList(MENU.ItemList);
+    }
+    setStatus(status);
+  };
 
- const renderItem =({item, index})=>{
-return(
-  <View >
-  <Text>{item.name}</Text>
-  <Text>{item.price}</Text>
+  console.log(dataList, "tata slist");
 
-
-  </View>
-)
- }
+  const renderItem = ({ item, index }) => {
+    return (
+      <TouchableOpacity>
+        <View style={styles.itemList}>
+          <Text style={styles.ItemListName}>
+            {item.name}
+          </Text>
+          <Text>
+            {item.price}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <SafeAreaView>
       <View style={styles.categoriesList}>
-      {CATEGORY.CategoriesList.map(e=>(
-        <TouchableOpacity
-        style={[styles.btn, status === e.status && styles.btnActive]}
-        onPress={()=> setStatusFilter(e.status)}>
-          <Text>{e.status}</Text>
-        </TouchableOpacity>
-      ))}
-       
+        {CATEGORY.CategoriesList.map(elements =>
+          <TouchableOpacity
+            style={[styles.btn, status === elements.status && styles.btnActive]}
+            onPress={() => setStatusFilter(elements.status)}
+          >
+            <Text>
+              {elements.status}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
-      <FlatList
-      data={dataList}
-      keyExtractor={item => item.id}
-      renderItem={renderItem}
-
-      />
-     
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={dataList}
+          keyExtractor={(item, index) => item.id}
+          renderItem={renderItem}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -75,30 +80,40 @@ const styles = StyleSheet.create({
   menuContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height:windowHeight*0.78
-
+    height: windowHeight * 0.78
   },
   menuView: {
-    flex:1,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
-  imageContainer:{
-justifyContent:"center",
-alignItems:'center',
-
+  imageContainer: {
+    justifyContent: "center",
+    alignItems: "center"
   },
   imageStyle: {
     height: 64,
     width: 64
   },
-  categoriesList:{
-
+  categoriesList: {},
+  btn: {
+    backgroundColor: "red"
   },
-  btn:{
-    backgroundColor:'red',
+  btnActive: {
+    backgroundColor: "green"
   },
-  btnActive:{
-    backgroundColor:'green'
+  itemList: {
+    flexDirection: "row",
+    width: windowWidth * 0.8,
+    backgroundColor: COLOR.BorderClo,
+    padding: 14,
+    margin: 4,
+    borderRadius: 12,
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
+  ItemListName: {
+    marginLeft: 20,
+    width: 200
   }
 });
