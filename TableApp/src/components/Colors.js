@@ -18,29 +18,29 @@ export const BORDER_COLOR = "#000000";
 
 
 
-{CATEGORY.CategoriesList.map(elements =>
-    <View style={styles.categoryContainer}>
-      <TouchableOpacity
-        style={[
-          styles.btn,
-          status === elements.status && styles.btnActive
-        ]}
-        onPress={() => setStatusFilter(elements.status)}
-      >
-        <View>
-          <Text>
-            {elements.status}
-          </Text>
-          <FlatList
-            data={elements.status}
-            keyExtractor={(item)=>item.status}
-            renderItem={()=>{
-              <View>
-                <Text>{elements.status}</Text>
-              </View>
-            }}
-          /> 
-        </View>
-      </TouchableOpacity>
-    </View>
-  )}
+// {CATEGORY.CategoriesList.map(elements =>
+//     <View style={styles.categoryContainer}>
+//       <TouchableOpacity
+//         style={[
+//           styles.btn,
+//           status === elements.status && styles.btnActive
+//         ]}
+//         onPress={() => setStatusFilter(elements.status)}
+//       >
+//         <View>
+//           <Text>
+//             {elements.status}
+//           </Text>
+//           <FlatList
+//             data={elements.status}
+//             keyExtractor={(item)=>item.status}
+//             renderItem={()=>{
+//               <View>
+//                 <Text>{elements.status}</Text>
+//               </View>
+//             }}
+//           /> 
+//         </View>
+//       </TouchableOpacity>
+//     </View>
+//   )}

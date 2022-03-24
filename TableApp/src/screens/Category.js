@@ -38,12 +38,6 @@ const Category = ({ navigation, route }) => {
 
 
 
-  const completeTask =(index)=>{
-    let itemsCopy = [...cart];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy)
-  }
-
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity onPress={()=>  setCart([...cart,item])}>
@@ -78,7 +72,7 @@ const Category = ({ navigation, route }) => {
             <TouchableOpacity
               onPress={() => setStatusFilter(elements.Category)}
             >
-              <View key={elements.id} style={styles.cateContainer}>
+              <View  key={elements.id} style={styles.cateContainer}>
                 <Text>
                   {elements.Category}
                 </Text>

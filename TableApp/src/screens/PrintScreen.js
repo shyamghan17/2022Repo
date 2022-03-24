@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const PrintScreen = ({navigation}) => {
+const PrintScreen = ({navigation, route}) => {
+  const { printList: item } = route.params;
   return (
     <SafeAreaView>
  <View>
