@@ -5,41 +5,60 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  FlatList,
-  Dimensions
+  Dimensions,
+  FlatList
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import Title from "../components/Title";
 import * as COLOR from "../components/Colors";
+import DataContext from "../Global/DataContex";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const CartScreen = ({ navigation, route }) => {
-  const { cart: cart } = route.params;
+  const { table, cart,  completeTask } = useContext(DataContext);
 
-  const renderItem = ({ item, index }) => {
+  // console.log(JSON.stringify(cart), "from cart page");
+  console.log(cart, "form cart page 1");
+
+
+ 
+
+  const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity>
-        <View key={item.id} style={styles.itemList}>
-          <Text>
-            {item.name}
-          </Text>
+      <View style={styles.itemList}>
+        <View style={{justifyContent:'space-between', alignItems:'center', flexDirection:'row', width:'90%'}}>
+        <Text style={styles.itemText}>
+          {item.name}
+        </Text>
+        <Text  style={styles.itemText}>
+          $: {item.price}
+        </Text>
         </View>
-      </TouchableOpacity>
+       
+        <TouchableOpacity key={item} onPress={()=> completeTask(item)} >
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("../images/delete.png")}
+          />
+        </TouchableOpacity>
+      </View>
     );
   };
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Title title={"Cart"} />
-        <TouchableOpacity onPress={() => navigation.navigate("Print")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
           <Image
             style={styles.imageStyle}
-            source={require("../images/print.png")}
+            source={require("../images/back.png")}
           />
         </TouchableOpacity>
+
+        <Title title={"Cart"} />
+        {/* <Title title={table} /> */}
       </View>
       <View
         style={{
@@ -48,34 +67,12 @@ const CartScreen = ({ navigation, route }) => {
           height: windowHeight * 0.8
         }}
       >
-        {cart.map((item, id) =>
-          <TouchableOpacity>
-            <View key={item.id} style={styles.itemList}>
-              <Text>
-                {item.name}
-              </Text>
-              <Text>
-                $: {item.price}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        )}
+        <FlatList
+          data={cart}
+          keyExtractor={item => item}
+          renderItem={renderItem}
+        />
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("Print", {item})}>
-        <View
-          style={{
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            marginBottom: 20,
-            marginRight: 20
-          }}
-        >
-          <Image
-            style={styles.imageStyle}
-            source={require("../images/print.png")}
-          />
-        </View>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -103,5 +100,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: COLOR.BORDER_COLOR,
     borderWidth: 1
+  },
+  itemText:{
+    color:'#041316'
   }
 });

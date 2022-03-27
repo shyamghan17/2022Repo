@@ -14,15 +14,18 @@ import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
 import * as COLOR from "../components/Colors";
 import Title from "../components/Title";
+import DataContext from "../Global/DataContex";
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
-  const { tableNo: tableNo } = route.params;
+  const { setCart, cart, setItemStorage } = useContext(DataContext);
+  // const {table} = route.params
+
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
-  const [cart, setCart] = useState([])
 
   const setStatusFilter = category => {
     if (category !== "All") {
@@ -35,53 +38,63 @@ const Category = ({ navigation, route }) => {
     setCategory(category);
   };
 
-
-
-
-  const renderItem = ({ item, index }) => {
+  // Category list render Component
+  const renderCatagory = ({ item }) => {
     return (
-      <TouchableOpacity onPress={()=>  setCart([...cart,item])}>
-        <View key={item.id} style={styles.itemList}>
-          <Text>
+      <TouchableOpacity
+        key={item.id}
+        onPress={() => setStatusFilter(item.Category)}
+      >
+        <View style={styles.cateContainer}>
+          <Text style={styles.itemText}>
+            {item.Category}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  // Menu list render Component
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity key={item.id} onPress={() => setCart([...cart, item])}>
+        <View style={styles.itemList}>
+          <Text style={styles.itemText}>
             {item.name}
           </Text>
-          <Text>
+          <Text style={styles.itemText}>
             $: {item.price}
           </Text>
         </View>
       </TouchableOpacity>
     );
   };
-
+const goToCart =() => {
+  navigation.navigate("Cart");
+  setItemStorage(cart)
+}
   return (
     <SafeAreaView>
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "space-around",
+          justifyContent: "center",
           alignItems: "center"
         }}
       >
         <Title title={"Main Category list"} />
-        <Title title={tableNo} />
+        {/* <Title title={table} /> */}
       </View>
 
       <View style={styles.categoriesList}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {CATEGORY.CategoriesList.map(elements =>
-            <TouchableOpacity
-              onPress={() => setStatusFilter(elements.Category)}
-            >
-              <View  key={elements.id} style={styles.cateContainer}>
-                <Text>
-                  {elements.Category}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        </ScrollView>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          data={CATEGORY.CategoriesList}
+          keyExtractor={item => item.id}
+          renderItem={renderCatagory}
+          horizontal={true}
+        />
       </View>
-      <Title title={"Sub Category"} />
+      <Title title={"Menu List"} />
 
       <View
         style={{
@@ -92,8 +105,8 @@ const Category = ({ navigation, route }) => {
       >
         <FlatList
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => item.id}
           data={dataList}
+          keyExtractor={item => item.id}
           renderItem={renderItem}
         />
       </View>
@@ -102,11 +115,13 @@ const Category = ({ navigation, route }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Image
             style={styles.imageStyle}
-            source={require("../images/home.png")}
+            source={require("../images/back.png")}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Cart", {cart})} >
+        <TouchableOpacity
+          onPress={goToCart}
+        >
           <Image
             style={styles.imageStyle}
             source={require("../images/cart1.png")}
@@ -152,5 +167,8 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: 30,
     width: 30
+  },
+  itemText:{
+    color:'#041316'
   }
 });

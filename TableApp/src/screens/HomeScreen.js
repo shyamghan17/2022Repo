@@ -9,12 +9,21 @@ import {
   VirtualizedList,
   ScrollView
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import * as COLOR from "../components/Colors";
 import Title from "../components/Title";
 import * as TABLE from "../data/TablesList";
 
+import DataContext from "../Global/DataContex";
+
 const HomeScreen = ({ navigation }) => {
+  const { setTable, table, setCartItem } = useContext(DataContext);
+
+  // const setTableId = (item) => {
+  //   setTable(item.id)
+  //   navigation.navigate("Categories");
+  // };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -25,8 +34,7 @@ const HomeScreen = ({ navigation }) => {
             alignItems: "center",
             width: "95%",
             marginVertical: 10,
-
-            paddingHorizontal: 10,
+            paddingHorizontal: 29,
             backgroundColor: COLOR.BUTTON_BACKGROUND,
             borderRadius: 10
           }}
@@ -49,10 +57,17 @@ const HomeScreen = ({ navigation }) => {
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Categories", { tableNo: item.title })}
+              onPress={() => {
+              
+                navigation.navigate("Categories");
+              }}
             >
-              <View style={styles.tableView}>
+              <View
+                style={[
+                  styles.tableView,
+                  table === item.title && styles.tableViewActive
+                ]}
+              >
                 <Text style={styles.tableText}>
                   {item.title}
                 </Text>
@@ -74,7 +89,22 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   tableView: {
-    backgroundColor: COLOR.TABLE_BACKGROUND,
+    backgroundColor: COLOR.TABLE_BACKGROUND1,
+    margin: 8,
+    height: 100,
+    width: 100,
+    borderRadius: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: COLOR.BorderClo,
+    borderWidth: 2,
+    shadowColor: COLOR.SHADOWCOLOR,
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 2, height: 4 },
+    shadowRadius: 3
+  },
+  tableViewActive: {
+    backgroundColor: COLOR.TABLE_BACKGROUND2,
     margin: 8,
     height: 100,
     width: 100,
