@@ -17,12 +17,12 @@ import * as TABLE from "../data/TablesList";
 import DataContext from "../Global/DataContex";
 
 const HomeScreen = ({ navigation }) => {
-  const { setTable, table, setCartItem } = useContext(DataContext);
+  const { setTable, table, setTableNumber } = useContext(DataContext);
 
-  // const setTableId = (item) => {
-  //   setTable(item.id)
-  //   navigation.navigate("Categories");
-  // };
+  const setTableId = () => {
+    setTableNumber(table);
+    navigation.navigate("Categories");
+  };
 
   return (
     <SafeAreaView>
@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
         >
           <Title title={"List of Tables"} />
 
-          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+          <TouchableOpacity onPress={setTableId}>
             <Image
               style={styles.imageStyle}
               source={require("../images/cart1.png")}
@@ -56,12 +56,7 @@ const HomeScreen = ({ navigation }) => {
           horizontal={false}
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
-            <TouchableOpacity
-              onPress={() => {
-              
-                navigation.navigate("Categories");
-              }}
-            >
+            <TouchableOpacity onPress={() => setTable([...table, item])}>
               <View
                 style={[
                   styles.tableView,

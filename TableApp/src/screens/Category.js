@@ -21,11 +21,13 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
-  const { setCart, cart, setItemStorage } = useContext(DataContext);
-  // const {table} = route.params
+  const { setCart, cart, setCartItems, table } = useContext(DataContext);
 
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
+
+console.log(table, 'tables');
+  //categories filtering method 
 
   const setStatusFilter = category => {
     if (category !== "All") {
@@ -70,7 +72,7 @@ const Category = ({ navigation, route }) => {
   };
 const goToCart =() => {
   navigation.navigate("Cart");
-  setItemStorage(cart)
+  setCartItems(cart)
 }
   return (
     <SafeAreaView>
@@ -82,7 +84,7 @@ const goToCart =() => {
         }}
       >
         <Title title={"Main Category list"} />
-        {/* <Title title={table} /> */}
+        <Title title={table.id} />
       </View>
 
       <View style={styles.categoriesList}>
