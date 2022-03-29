@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
 
       <View style={styles.container}>
     <NavigationComponent
-    onPress={() => navigation.navigate("Cart")}
+    onPress={() => navigation.navigate("Categories")}
     title={'List of Table'}
     image={require("../images/cart1.png")}
     />

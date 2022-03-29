@@ -1,18 +1,25 @@
 //Button Colors
-export const IconClo = "#36393B";
-export const BorderClo = "#36393B";
-export const IconColor = "#BFB6BB";
-export const SHADOWCOLOR = "#DF6353";
-export const HOME_BACKGROUND = "#232323";
+
+export const ITEM_COLOR = "#e66150";
+export const SHADOWCOLOR = "#A4C3B2";
+export const CATEGORY_COLOR = "#b4e14a";
+export const HOME_BACKGROUND = "#F6FFF8";
+export const ITEM_TEXT_COLOR = "#fff";
+
 export const BUTTON_BACKGROUND = "#FE715E";
 export const OPTIONS_COLOR = "#EFA99F";
 export const SHADOWCOLORS = "#F5F5F5";
 export const BUTTON_TEXT = "#F5A65B";
 export const WHITE = "#ffffff";
-export const TABLE_BACKGROUND1 = "#86DAEA";
-export const TABLE_BACKGROUND2 = "#08262D";
-export const TITLE_TEXT = "#59CBE2";
-export const TABLE_TEXT = "#EA9686";
+export const TABLE_BACKGROUND1 = "#6B9080";
+export const TABLE_BACKGROUND2 = "#EAF4F4";
+export const TITLE_TEXT = "#000";
+export const TABLE_TEXT = "#000";
 export const BORDER_COLOR = "#000000";
 export const NAVCOMP = "#BFB6BB";
 
+//#6B9080
+//#A4C3B2
+//#CCE3DE
+//#EAF4F4
+//#F6FFF8

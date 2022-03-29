@@ -16,7 +16,6 @@ const StackScreen = () => {
     >
     <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Categories" component={Category} />
-      
       <Stack.Screen name="Cart" component={CartScreen} />
       <Stack.Screen name="Print" component={PrintScreen} />
     </Stack.Navigator>

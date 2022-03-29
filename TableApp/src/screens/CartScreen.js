@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useContext } from "react";
 import Title from "../components/Title";
-import * as styles from "../components/styles";
+import { styles } from "../components/styles";
 import DataContext from "../Global/DataContex";
 
 const CartScreen = ({ navigation, route }) => {
@@ -18,13 +18,12 @@ const CartScreen = ({ navigation, route }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <View >
-        <View
-        >
-          <Text style={styles.itemText}>
+      <View style={styles.itemList}>
+        <View>
+          <Text style={styles.textColorWhite}>
             {item.name}
           </Text>
-          <Text style={styles.itemText}>
+          <Text style={styles.textColorWhite}>
             $: {item.price}
           </Text>
         </View>
@@ -40,8 +39,8 @@ const CartScreen = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.buttNav}>
         <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
           <Image
             style={styles.imageStyle}
@@ -50,16 +49,16 @@ const CartScreen = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <Title title={"Cart"} />
-        {/* <Title title={table} /> */}
+        {table ? <Title title={table} /> : null}
       </View>
-      <View>
-        <FlatList
-          data={cart}
-          keyExtractor={item => item}
-          renderItem={renderItem}
-        />
-      </View>
-    </SafeAreaView>
+
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={cart}
+        keyExtractor={item => item}
+        renderItem={renderItem}
+      />
+    </View>
   );
 };
 

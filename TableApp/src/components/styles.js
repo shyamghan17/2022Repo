@@ -1,5 +1,5 @@
-import { StyleSheet, Dimensions, StatusBar  } from "react-native";
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { StyleSheet, Dimensions, StatusBar } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 import * as COLOR from "../components/Colors";
 
@@ -10,23 +10,22 @@ export const styles = StyleSheet.create({
   textColorBlack: {
     color: "#000",
     fontSize: 16,
-    margin: 5,
-    padding: 5
+    fontWeight:'600',
+    fontStyle:'italic'
   },
   textColorWhite: {
     color: "#fff",
     fontSize: 16,
-    margin: 5,
-    padding: 5
   },
 
   container: {
-    marginTop:StatusBar.currentHeight,
+    marginTop: 40,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLOR.HOME_BACKGROUND,
     height: windowHeight,
-    width: windowWidth
+    width: windowWidth,
+    flex: 1
   },
   tableComponent: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
@@ -38,16 +37,14 @@ export const styles = StyleSheet.create({
     margin: 5
   },
   title: {
-    // height:windowHeight*0.07,
+    margin: 5,
     justifyContent: "center",
-    alignItems: "center"
-    // backgroundColor:'red',
-    // width:windowWidth*0.99,
-    // borderRadius:20
+    alignItems: "center",
+    padding: 10
   },
   titleText: {
-    fontWeight: "500",
-    fontSize: 20,
+    fontWeight: "bold",
+    fontSize: 18,
     color: COLOR.TITLE_TEXT
   },
 
@@ -61,22 +58,22 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     width: windowWidth,
     padding: 10,
-    backgroundColor: COLOR.NAVCOMP
+    backgroundColor: COLOR.HOME_BACKGROUND
   },
-  categoriList: {
-    flexDirection: "row"
+  catList: {
+    flexDirection: "row",
+
   },
   itemList: {
     flexDirection: "row",
     width: windowWidth * 0.8,
-    backgroundColor: COLOR.WHITE,
+    backgroundColor: COLOR.ITEM_COLOR,
     padding: 14,
     margin: 4,
     borderRadius: 12,
     justifyContent: "space-between",
     alignItems: "center",
-    borderColor: COLOR.BORDER_COLOR,
-    borderWidth: 1
+    borderColor: COLOR.BORDER_COLOR
   },
   tableView: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
@@ -98,35 +95,36 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: COLOR.BorderClo,
-    borderWidth: 2,
-    shadowColor: COLOR.SHADOWCOLOR,
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 2, height: 4 },
-    shadowRadius: 3
+    borderWidth: 2
   },
 
   tableText: {
     color: COLOR.TABLE_TEXT,
     fontSize: 18,
-    fontWeight: "500"
+    fontWeight: "bold"
   },
   shadowForAll: {
-    shadowColor: COLOR.SHADOWCOLOR,
+
     shadowOpacity: 0.3,
-    shadowOffset: { width: 2, height: 4 },
-    shadowRadius: 3
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 0.3
   },
   // category list styles
   cateItems: {
-    backgroundColor: "red",
+    backgroundColor: COLOR.CATEGORY_COLOR,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
-    marginHorizontal: 5
+    borderRadius: 8,
+    marginHorizontal: 5,
+    marginVertical:8,
+    padding:12
   },
-  buttomNav:{
+  buttNav: {
+    width: windowWidth - 10,
     justifyContent: "space-between",
     alignItems: "center",
-    // flex:1
+    flexDirection: "row",
+    marginVertical: 20,
+    paddingHorizontal: 40
   }
 });

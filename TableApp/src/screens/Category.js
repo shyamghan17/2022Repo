@@ -60,12 +60,16 @@ const Category = ({ navigation, route }) => {
     return (
       <TouchableOpacity key={item.id} onPress={() => setCart([...cart, item])}>
         <View style={styles.itemList}>
-          <Text>
+        <View>
+        <Text style={styles.textColorWhite}>
             {item.name}
           </Text>
-          <Text>
+          <Text style={styles.textColorWhite}>
             $: {item.price}
           </Text>
+
+        </View>
+         
         </View>
       </TouchableOpacity>
     );
@@ -79,7 +83,7 @@ const Category = ({ navigation, route }) => {
       <View style={styles.container}>
         <Title title={"Main Category list"} />
 
-        <View style={styles.categoriList}>
+        <View style={styles.catList}>
           <FlatList
             showsHorizontalScrollIndicator={false}
             data={CATEGORY.CategoriesList}
@@ -88,18 +92,17 @@ const Category = ({ navigation, route }) => {
             horizontal={true}
           />
         </View>
-        <Title title={"Menu List"} />
-
-      
-          <FlatList
+      <FlatList
             showsVerticalScrollIndicator={false}
             data={dataList}
             keyExtractor={item => item.id}
             renderItem={renderItem}
           />
+
+     
      
 
-        <View style={styles.buttomNav}>
+        <View style={styles.buttNav}>
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Image
               style={styles.imageStyle}
@@ -114,7 +117,6 @@ const Category = ({ navigation, route }) => {
             />
           </TouchableOpacity>
         </View>
-        <Title title={"Main Category list"} />
       </View>
 
   );
