@@ -81,8 +81,13 @@ const Category = ({ navigation, route }) => {
   return (
 
       <View style={styles.container}>
-        <Title title={"Main Category list"} />
 
+      <View style={{flexDirection:'row'}}>
+      <Title title={"Main Category list"} />
+        {table? <Title title={table.title}/>: null}
+
+      </View>
+      
         <View style={styles.catList}>
           <FlatList
             showsHorizontalScrollIndicator={false}

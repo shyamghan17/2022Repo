@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
-  Image, StatusBar
+  Image,
 } from "react-native";
 import React, { useContext } from "react";
 import * as COLOR from "../components/Colors";
@@ -23,7 +23,8 @@ const HomeScreen = ({ navigation }) => {
     setTableNumber(table);
     navigation.navigate("Categories");
   };
-  console.log(StatusBar.statusBarHeight, 'heitht');
+
+  console.log(table);
 
   return (
 
@@ -41,7 +42,7 @@ const HomeScreen = ({ navigation }) => {
           horizontal={false}
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
-            <TouchableOpacity onPress={() => setTable([...table, item])}>
+            <TouchableOpacity onPress={() => setTable(item)}>
             <TableComponent tableName={item.title}/>
             </TouchableOpacity>}
         />

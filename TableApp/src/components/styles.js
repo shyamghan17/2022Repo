@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
   },
   itemList: {
     flexDirection: "row",
-    width: windowWidth * 0.8,
+    width: windowWidth -10,
     backgroundColor: COLOR.ITEM_COLOR,
     padding: 14,
     margin: 4,

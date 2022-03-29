@@ -28,7 +28,7 @@ const CartScreen = ({ navigation, route }) => {
           </Text>
         </View>
 
-        <TouchableOpacity key={item} onPress={() => completeTask(item)}>
+        <TouchableOpacity key={item} onPress={() =>completeTask(item)}>
           <Image
             style={{ height: 30, width: 30 }}
             source={require("../images/delete.png")}
