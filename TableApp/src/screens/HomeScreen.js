@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
       {table?  <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
           <Image
             style={styles.imageStyle}
-            source={require("../images/back.png")}
+            source={require("../images/forward.png")}
           />
         </TouchableOpacity> : null}
       </View>

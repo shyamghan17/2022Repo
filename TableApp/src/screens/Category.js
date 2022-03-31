@@ -83,7 +83,7 @@ const Category = ({ navigation, route }) => {
     );
   };
   const goToCart = () => {
-    setCartItems(cart);
+    setCartItems();
     navigation.navigate("Cart");
   };
   return (
