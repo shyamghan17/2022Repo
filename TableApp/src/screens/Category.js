@@ -1,18 +1,14 @@
 import {
-  StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TouchableOpacity,
   FlatList,
   Image,
-  ScrollView,
   Dimensions
 } from "react-native";
 import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
-import * as COLOR from "../components/Colors";
 import Title from "../components/Title";
 import DataContext from "../Global/DataContex";
 import { styles } from "../components/styles";
@@ -26,7 +22,6 @@ const Category = ({ navigation, route }) => {
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
 
-  console.log(table, "tables");
   //categories filtering method
 
   const setStatusFilter = category => {
@@ -39,7 +34,14 @@ const Category = ({ navigation, route }) => {
     }
     setCategory(category);
   };
+  const newArray =CATEGORY.CategoriesList
+  const sortedArray = newArray.sort(
+    (a, b) => a.Category.toLowerCase() > b.Category.toLowerCase()
+  );
 
+  const sordedDataList = dataList.sort(
+    (a, b) => a.name.toLowerCase() > b.name.toLowerCase()
+  );
   // Category list render Component
   const renderCatagory = ({ item }) => {
     return (
@@ -56,74 +58,73 @@ const Category = ({ navigation, route }) => {
     );
   };
   // Menu list render Component
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
+     const OrderItems = {
+       table: table,
+       item: item.id,
+       name: item.name,
+       category: item.Category,
+       price: item.price,
+       id: Math.floor(Date.now())
+     }
     return (
-      <TouchableOpacity key={item.id} onPress={() => setCart([...cart, item])}>
+      <TouchableOpacity key={item.id} onPress={() => setCart([...cart, OrderItems])}>
         <View style={styles.itemList}>
-        <View>
-        <Text style={styles.textColorWhite}>
-            {item.name}
-          </Text>
-          <Text style={styles.textColorWhite}>
-            $: {item.price}
-          </Text>
-
-        </View>
-         
+          <View>
+            <Text style={styles.textColorWhite}>
+              {item.name}
+            </Text>
+            <Text style={styles.textColorWhite}>
+              $: {item.price}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
     );
   };
   const goToCart = () => {
-    navigation.navigate("Cart");
     setCartItems(cart);
+    navigation.navigate("Cart");
   };
   return (
-
-      <View style={styles.container}>
-
-      <View style={{flexDirection:'row'}}>
-      <Title title={"Main Category list"} />
-        {table? <Title title={table.title}/>: null}
-
+    <View style={styles.container}>
+      <View style={{ flexDirection: "row" }}>
+        <Title title={"Main Category list"} />
+        {table ? <Title title={table} /> : null}
       </View>
-      
-        <View style={styles.catList}>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            data={CATEGORY.CategoriesList}
-            keyExtractor={item => item.id}
-            renderItem={renderCatagory}
-            horizontal={true}
-          />
-        </View>
+
+      <View style={styles.catList}>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          data={sortedArray}
+          keyExtractor={item => item.id}
+          renderItem={renderCatagory}
+          horizontal={true}
+        />
+      </View>
       <FlatList
-            showsVerticalScrollIndicator={false}
-            data={dataList}
-            keyExtractor={item => item.id}
-            renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+        data={sordedDataList}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      />
+
+      <View style={styles.buttNav}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Image
+            style={styles.imageStyle}
+            source={require("../images/back.png")}
           />
+        </TouchableOpacity>
 
-     
-     
-
-        <View style={styles.buttNav}>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Image
-              style={styles.imageStyle}
-              source={require("../images/back.png")}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={goToCart}>
-            <Image
-              style={styles.imageStyle}
-              source={require("../images/cart1.png")}
-            />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={goToCart}>
+          <Image
+            style={styles.imageStyle}
+            source={require("../images/cart1.png")}
+          />
+        </TouchableOpacity>
       </View>
-
+    </View>
   );
 };
 

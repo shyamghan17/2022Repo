@@ -69,7 +69,7 @@ export const TablesList = [
   },
   {
     id: 1118,
-    title: "Table 8"
+    title: "Table 18"
   },
   {
     id: 1119,

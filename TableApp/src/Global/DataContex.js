@@ -6,6 +6,7 @@ const DataContext = createContext(null);
 export const DataProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState();
+  const [dataList, setDataList] = useState([]);
 
   const cartItems = JSON.stringify(cart);
 
@@ -17,7 +18,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  getItemStorage = async () => {
+  const getItemStorage = async () => {
     try {
       const cartItems = await AsyncStorage.getItem("cartItems");
 
@@ -28,26 +29,23 @@ export const DataProvider = ({ children }) => {
       console.log("reading data error");
     }
   };
+
   useEffect(() => {
-    this.getItemStorage();
+    getItemStorage();
   }, []);
-
-  // removeItemStorage = async () => {
-  //   try {
-  //     await AsyncStorage.setItem("name", cartItems);
-  //   } catch (error) {
-  //     console.log("adding data error");
-  //   }
-  // };
-
-
-  const completeTask = ({ item }) => {
-    let itemsCopy = [...cart];
-    console.log(itemsCopy, " tiems copy");
-    itemsCopy.splice(item, 1);
-    setCart(itemsCopy);
-    this.setCartItems();
+  
+  const completeTask = (id) => {
+    // let dataCart = cart
+    setCart(cart.filter(x => x.id != id))
+    this.setCartItems()
   };
+
+
+  // const completeTask = (cart, item)=>{
+  //   let newArray= [cart]
+  //   newArray.splice(item.id, 1)
+  //   return setCart(newArray)
+  // }
 
   return (
     <DataContext.Provider
@@ -58,7 +56,8 @@ export const DataProvider = ({ children }) => {
         completeTask,
         table,
         setTable,
-        setTableNumber
+        dataList,
+        setDataList
       }}
     >
       {children}

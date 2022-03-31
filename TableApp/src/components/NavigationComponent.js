@@ -6,7 +6,6 @@ import { styles } from "./styles";
 const NavigationComponent = ({ title, onPress, image }) => {
   return (
     <View style={styles.navigationComponent}>
-      <Title title={title} />
       <TouchableOpacity onPress={onPress}>
         <Image style={styles.imageStyle} source={image} />
       </TouchableOpacity>
