@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, FlatList, Image } from "react-native";
+import { View, TouchableOpacity, FlatList, Image, SafeAreaView } from "react-native";
 import React, { useContext } from "react";
 import Title from "../components/Title";
 import * as TABLE from "../data/TablesList";
@@ -8,12 +8,14 @@ import DataContext from "../Global/DataContex";
 import TableComponent from "../components/TableComponent";
 import NavigationComponent from "../components/NavigationComponent";
 
+
 const HomeScreen = ({ navigation }) => {
   const { setTable, table, setTableNumber } = useContext(DataContext);
 
 
 
   return (
+    <SafeAreaView>
     <View style={styles.container}>
       <View style={styles.navigationComponent}>
         <Title title={"List of Table"} />
@@ -40,6 +42,8 @@ const HomeScreen = ({ navigation }) => {
         />
       </View>
     </View>
+    </SafeAreaView>
+
   );
 };
 

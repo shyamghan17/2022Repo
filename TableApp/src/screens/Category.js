@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Dimensions
+  Dimensions, SafeAreaView
 } from "react-native";
 import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
@@ -87,9 +87,12 @@ const Category = ({ navigation, route }) => {
     navigation.navigate("Cart");
   };
   return (
+    <SafeAreaView>
+
+
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
-        <Title title={"Main Category list"} />
+        <Title title={"Category"} />
         {table ? <Title title={table} /> : null}
       </View>
 
@@ -109,7 +112,7 @@ const Category = ({ navigation, route }) => {
         renderItem={renderItem}
       />
 
-      <View style={styles.buttNav}>
+      <View style={styles.buttButtomNav}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Image
             style={styles.imageStyle}
@@ -125,6 +128,7 @@ const Category = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 

@@ -3,7 +3,7 @@
 export const ITEM_COLOR = "#e66150";
 export const SHADOWCOLOR = "#A4C3B2";
 export const CATEGORY_COLOR = "#b4e14a";
-export const HOME_BACKGROUND = "#F6FFF8";
+export const HOME_BACKGROUND = "#e0ffff";
 export const ITEM_TEXT_COLOR = "#fff";
 
 export const BUTTON_BACKGROUND = "#FE715E";

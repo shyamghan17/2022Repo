@@ -1,10 +1,9 @@
 import {
   Text,
   View,
-  SafeAreaView,
   Image,
   TouchableOpacity,
-  FlatList
+  FlatList, SafeAreaView
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import Title from "../components/Title";
@@ -56,7 +55,7 @@ const CartScreen = ({ navigation }) => {
           setTable(item.table);
         }}
       >
-        <View style={[styles.cateItems, styles.shadowForAll]}>
+        <View style={styles.cateItems}>
           <Text style={styles.textColorBlack}>
             {item.table}
           </Text>
@@ -66,8 +65,9 @@ const CartScreen = ({ navigation }) => {
   };
 
   return (
+    <SafeAreaView>
     <View style={styles.container}>
-      <View style={styles.buttNav}>
+      <View style={styles.buttTopNav}>
         <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
           <Image
             style={styles.imageStyle}
@@ -118,6 +118,7 @@ const CartScreen = ({ navigation }) => {
           </View>}
       />
     </View>
+    </SafeAreaView>
   );
 };
 

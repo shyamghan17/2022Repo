@@ -5,10 +5,12 @@ import CartScreen from "../screens/CartScreen";
 import PrintScreen from "../screens/PrintScreen";
 import Category from "../screens/Category";
 
+
 const Stack = createNativeStackNavigator();
 
 const StackScreen = () => {
   return (
+
     <Stack.Navigator
       screenOptions={{
         headerShown: false
@@ -19,6 +21,9 @@ const StackScreen = () => {
       <Stack.Screen name="Cart" component={CartScreen} />
       <Stack.Screen name="Print" component={PrintScreen} />
     </Stack.Navigator>
+
+
+  
   );
 };
 

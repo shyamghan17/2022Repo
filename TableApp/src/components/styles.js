@@ -10,22 +10,23 @@ export const styles = StyleSheet.create({
   textColorBlack: {
     color: "#000",
     fontSize: 16,
-    fontWeight:'600',
-    fontStyle:'italic'
+    fontWeight: "600",
+    fontStyle: "italic"
   },
   textColorWhite: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 16
   },
 
   container: {
-    marginTop: 40,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLOR.HOME_BACKGROUND,
     height: windowHeight,
     width: windowWidth,
-    flex: 1
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    // backgroundColor: "grey"
   },
   tableComponent: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
@@ -61,12 +62,11 @@ export const styles = StyleSheet.create({
     backgroundColor: COLOR.HOME_BACKGROUND
   },
   catList: {
-    flexDirection: "row",
-
+    flexDirection: "row"
   },
   itemList: {
     flexDirection: "row",
-    width: windowWidth -10,
+    width: windowWidth - 10,
     backgroundColor: COLOR.ITEM_COLOR,
     padding: 14,
     margin: 4,
@@ -104,7 +104,6 @@ export const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   shadowForAll: {
-
     shadowOpacity: 0.3,
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 0.3
@@ -116,15 +115,25 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     marginHorizontal: 5,
-    marginVertical:8,
-    padding:12
+    marginVertical: 8,
+    padding: 12
   },
-  buttNav: {
+  buttTopNav: {
     width: windowWidth - 10,
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 20,
-    paddingHorizontal: 40
+    marginVertical: 10,
+    paddingHorizontal: 10
+  },
+  buttButtomNav: {
+    width: windowWidth - 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    // bottom: 100
+    position:'absolute'
   }
 });
