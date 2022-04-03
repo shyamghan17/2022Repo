@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions, StatusBar } from "react-native";
-import { getStatusBarHeight } from "react-native-status-bar-height";
 
 import * as COLOR from "../components/Colors";
 
@@ -29,13 +28,14 @@ export const styles = StyleSheet.create({
     // backgroundColor: "grey"
   },
   tableComponent: {
+
     backgroundColor: COLOR.TABLE_BACKGROUND1,
     justifyContent: "center",
     alignItems: "center",
-    height: windowHeight * 0.15,
-    width: windowWidth * 0.3,
-    borderRadius: 50,
-    margin: 5
+    height: windowHeight * 0.1,
+    width: windowWidth * 0.27,
+    borderRadius: 20,
+    margin: 7
   },
   title: {
     margin: 5,
@@ -54,12 +54,19 @@ export const styles = StyleSheet.create({
     width: 30
   },
   navigationComponent: {
+    marginTop:5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: windowWidth,
+    width: windowWidth-18,
     padding: 10,
-    backgroundColor: COLOR.HOME_BACKGROUND
+    backgroundColor: COLOR.NAVCOMP,
+    borderRadius:20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 15
   },
   catList: {
     flexDirection: "row"
@@ -78,13 +85,13 @@ export const styles = StyleSheet.create({
   tableView: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
     margin: 8,
-    height: 100,
-    width: 100,
+    height: 80,
+    width: 80,
     borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
     borderColor: COLOR.BorderClo,
-    borderWidth: 2
+    borderWidth: 1
   },
   tableViewActive: {
     backgroundColor: COLOR.TABLE_BACKGROUND2,
@@ -101,7 +108,8 @@ export const styles = StyleSheet.create({
   tableText: {
     color: COLOR.TABLE_TEXT,
     fontSize: 18,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily:'Cochin'
   },
   shadowForAll: {
     shadowOpacity: 0.3,
@@ -135,5 +143,18 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     // bottom: 100
     position:'absolute'
+  }, TableContainer:{
+    // flex:1,
+    backgroundColor:COLOR.BUTTON_BACKGROUND,
+    marginTop:10,
+    borderRadius:20,
+    padding:10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 15,
+    bottom:0
+
   }
 });
