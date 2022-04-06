@@ -19,9 +19,11 @@ const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } = useContext(DataContext);
+  console.log(cart, 'cart items');
 
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
+  const [menuItems, setMenuItem] = useState([])
 
   //categories filtering method
 
@@ -58,20 +60,39 @@ const Category = ({ navigation, route }) => {
       </TouchableOpacity>
     );
   };
+  
   // Menu list render Component
-  const renderItem = ({ item, index }) => {
-    // const OrderItems = {
-    //   table: table,
-    //   item: item.id,
-    //   name: item.name,
-    //   category: item.Category,
-    //   price: item.price,
-    //   id: Math.floor(Date.now())
-    // };
+  const renderItem = ({ item}) => {
+    const OrderMenu = {                                                                                                                              
+      items: [
+        {
+          item: item.name,
+          category: item.Category,
+          price: item.price,
+          quantity: 0,
+          id: item.id
+        },
+      ] 
+    };
+
+    
+   
+    const SetTable =({cart, table, item})=>{
+      // if (cart.tableNum == table){ 
+  
+      //   setCart([...cart.tableNum, OrderMenu])
+      // }
+      // if (cart.tableNum !== table){
+        setCart([...cart, OrderItems])
+      // }
+     
+      
+    }
+
     return (
       <TouchableOpacity
         key={item.id}
-        onPress={() => setCart([...cart, OrderItems])}
+        onPress={SetTable(item)}
       >
         <View style={styles.itemList}>
 
@@ -95,7 +116,8 @@ const Category = ({ navigation, route }) => {
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
-      <View style={styles.container}>
+    
+     {/* <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Image
             style={{ height: 30, width: 30 }}
@@ -139,7 +161,7 @@ const Category = ({ navigation, route }) => {
           keyExtractor={item => item.id}
           renderItem={renderItem}
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

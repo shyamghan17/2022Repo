@@ -5,7 +5,7 @@ import {
   Image,
   SafeAreaView,
   Text,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import React, { useContext } from "react";
 import * as TABLE from "../data/TablesList";
@@ -14,27 +14,45 @@ import TableComponent from "../components/TableComponent";
 import { styles } from "../components/styles";
 
 const HomeScreen = ({ navigation }) => {
-  const { setTable, table, setTableNumber } = useContext(DataContext);
+  const { setTable, table, setCart, cart, setCartItems } =
+    useContext(DataContext);
 
+  const OrderItems = {
+    tableNum: table,
+    orderNumber: Math.floor(1000 + Math.random() * 9000),
+    items: null,
+  };
+
+  const goToCart = () => {
+ 
+    if (cart.tableNum == table) {
+      navigation.navigate("Print");
+      console.log(cart, 'table selected');
+    } else {
+      setCart([...cart, OrderItems])
+
+      setCartItems();
+      console.log(cart, 'table Added');
+      navigation.navigate("Categories");
+    }
+  };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "#CCE3DE", marginTop: 21 }}
+    >
       <View style={styles.container}>
-        <Text style={styles.headerText}>
-          Tables
-        </Text>
-        {table
-          ? <Text style={styles.headerText}>
-              Selected: {table}
-            </Text>
-          : null}
-        {table
-          ? <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-              <Image
-                style={{ height: 30, width: 30 }}
-                source={require("../images/forward.png")}
-              />
-            </TouchableOpacity>
-          : null}
+        <Text style={styles.headerText}>Tables</Text>
+        {table ? (
+          <Text style={styles.headerText}>Selected: {table}</Text>
+        ) : null}
+        {table ? (
+          <TouchableOpacity onPress={goToCart}>
+            <Image
+              style={{ height: 30, width: 30 }}
+              source={require("../images/forward.png")}
+            />
+          </TouchableOpacity>
+        ) : null}
       </View>
 
       <View
@@ -45,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
           shadowOffset: { width: -0.1, height: 2 },
           shadowOpacity: 0.9,
           shadowRadius: 10,
-          elevation: 15
+          elevation: 15,
         }}
       >
         <FlatList
@@ -53,11 +71,12 @@ const HomeScreen = ({ navigation }) => {
           numColumns={3}
           showsVerticalScrollIndicator={false}
           horizontal={false}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) =>
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
             <TouchableOpacity onPress={() => setTable(item.title)}>
               <TableComponent title={item.title} />
-            </TouchableOpacity>}
+            </TouchableOpacity>
+          )}
         />
       </View>
     </SafeAreaView>

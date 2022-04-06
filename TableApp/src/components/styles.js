@@ -6,36 +6,44 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
-  textColorBlack: {
-    color: "#000",
-    fontSize: 16,
-    fontWeight: "600",
-    fontStyle: "italic"
-  },
-  textColorWhite: {
-    color: "#fff",
-    fontSize: 16
-  },
 
   container: {
-    // justifyContent: "center",
+    marginHorizontal: 20,
+    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: COLOR.HOME_BACKGROUND,
-    height: windowHeight,
-    width: windowWidth,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    // backgroundColor: "grey"
+    justifyContent: "space-between",
+    marginBottom: 5,
+    backgroundColor: "#A4C3B2",
+    opacity: 0.8,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    shadowColor: "#A4C3B2",
+    shadowOffset: { width: -0.1, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    elevation: 15
+  },
+
+  headerText:{
+   fontSize: 14, fontWeight: "bold", padding: 10 
   },
   tableComponent: {
-
-    backgroundColor: COLOR.TABLE_BACKGROUND1,
+    height: 80,
+    width: 95,
     justifyContent: "center",
     alignItems: "center",
-    height: windowHeight * 0.1,
-    width: windowWidth * 0.27,
+    backgroundColor: "green",
+    margin: 10,
     borderRadius: 20,
-    margin: 7
+    backgroundColor: "#A4C3B2",
+    opacity: 0.8,
+    borderRadius: 20,
+    shadowColor: "#A4C3B2",
+    shadowOffset: { width: -0.1, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    elevation: 15
   },
   title: {
     margin: 5,
@@ -54,33 +62,41 @@ export const styles = StyleSheet.create({
     width: 30
   },
   navigationComponent: {
-    marginTop:5,
+    marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: windowWidth-18,
+    width: windowWidth - 18,
     padding: 10,
     backgroundColor: COLOR.NAVCOMP,
-    borderRadius:20,
-    shadowColor: '#000',
+    borderRadius: 20,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
-    shadowRadius: 2,  
+    shadowRadius: 2,
     elevation: 15
   },
   catList: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent:'center',
+    alignItems:'center',
+   marginHorizontal:13
   },
   itemList: {
     flexDirection: "row",
-    width: windowWidth - 10,
+    width: windowWidth - 40,
     backgroundColor: COLOR.ITEM_COLOR,
     padding: 14,
     margin: 4,
     borderRadius: 12,
     justifyContent: "space-between",
     alignItems: "center",
-    borderColor: COLOR.BORDER_COLOR
+    shadowColor: "#A4C3B2",
+    shadowOffset: { width:0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 3,
+
+
   },
   tableView: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
@@ -107,9 +123,8 @@ export const styles = StyleSheet.create({
 
   tableText: {
     color: COLOR.TABLE_TEXT,
-    fontSize: 18,
-    fontWeight: "bold",
-    fontFamily:'Cochin'
+    fontSize: 16,
+    fontWeight: "500"
   },
   shadowForAll: {
     shadowOpacity: 0.3,
@@ -122,39 +137,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
-    marginHorizontal: 5,
-    marginVertical: 8,
+    marginHorizontal:5,
+    marginVertical: 10,
     padding: 12
   },
-  buttTopNav: {
-    width: windowWidth - 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    marginVertical: 10,
-    paddingHorizontal: 10
-  },
-  buttButtomNav: {
-    width: windowWidth - 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    marginVertical: 10,
-    paddingHorizontal: 10,
-    // bottom: 100
-    position:'absolute'
-  }, TableContainer:{
-    // flex:1,
-    backgroundColor:COLOR.BUTTON_BACKGROUND,
-    marginTop:10,
-    borderRadius:20,
-    padding:10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,  
-    elevation: 15,
-    bottom:0
 
+ 
+ 
+  listText:{
+    fontSize:14,
+    fontWeight:'500'
   }
 });

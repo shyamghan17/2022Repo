@@ -3,13 +3,13 @@ import {
   View,
   Image,
   TouchableOpacity,
-  FlatList, SafeAreaView
+  FlatList,
+  SafeAreaView
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
-import Title from "../components/Title";
 import { styles } from "../components/styles";
 import DataContext from "../Global/DataContex";
-import Total from "../components/Total";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const CartScreen = ({ navigation }) => {
   const {
@@ -22,7 +22,7 @@ const CartScreen = ({ navigation }) => {
   } = useContext(DataContext);
 
   const setStatusFilter = table => {
-    if (table !== '') {
+    if (table !== "") {
       setDataList(cart.filter(elements => elements.table === table));
     }
   };
@@ -38,17 +38,11 @@ const CartScreen = ({ navigation }) => {
     (a, b) => a.table.toLowerCase() > b.table.toLowerCase()
   );
 
-  // const sordedDataList = dataList.sort(
-  //   (a, b) => a.name.toLowerCase() > b.name.toLowerCase()
-  // );
+  let total = dataList.reduce((currentTotal, item) => {
+    return item.price + currentTotal;
+  }, 0);
+  let totalPrice = total.toFixed(2);
 
-
-  let total = dataList.reduce((currentTotal, item)=>{
-    return item.price + currentTotal
-  }, 0)
-
-  console.log(total);
-  
   useEffect(
     () => {
       setStatusFilter(table);
@@ -74,20 +68,27 @@ const CartScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView>
-    <View style={styles.container}>
-      <View style={styles.buttTopNav}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
           <Image
-            style={styles.imageStyle}
+            style={{ height: 30, width: 30 }}
             source={require("../images/back.png")}
           />
         </TouchableOpacity>
 
+        <Text style={styles.headerText}>
+          {table} : ${totalPrice}
+        </Text>
 
-        <Total total={total}/>
-        {table ? <Title title={table} /> : null}
+        <TouchableOpacity onPress={() => navigation.navigate("Print")}>
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("../images/forward.png")}
+          />
+        </TouchableOpacity>
       </View>
+
       <View style={styles.catList}>
         <FlatList
           showsHorizontalScrollIndicator={false}
@@ -97,35 +98,59 @@ const CartScreen = ({ navigation }) => {
           horizontal={true}
         />
       </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={dataList}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) =>
-          <View key={index} style={styles.itemList}>
-            <View>
-              <Text style={styles.textColorWhite}>
-                {item.name}
-              </Text>
-              <Text style={styles.textColorWhite}>
-                $: {item.price}
-              </Text>
-
-            </View>
-
-            <TouchableOpacity
-              onPress={() => {
-                completeTask(item.id);
-              }}
-            >
-              <Image
-                style={{ height: 30, width: 30 }}
-                source={require("../images/delete.png")}
-              />
-            </TouchableOpacity>
-          </View>}
-      />
-    </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={dataList}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) =>
+            <View key={index} style={styles.itemList}>
+              <View>
+                <Text style={styles.textColorWhite}>
+                  {item.name}
+                </Text>
+                <Text style={styles.textColorWhite}>
+                  {item.id}
+                </Text>
+                <Text style={styles.textColorWhite}>
+                  $: {item.price}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center"
+                }}
+              >
+                <TouchableOpacity>
+                <Ionicons name="md-remove-circle" size={24} color="black" /> 
+                </TouchableOpacity>
+                <Text style={styles.headerText}>
+                  {"10"}
+                </Text>
+                <TouchableOpacity>
+                <Ionicons name="add-circle" size={24} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    completeTask(item.id);
+                  }}
+                >
+                  <Image
+                    style={{ height: 30, width: 30 }}
+                    source={require("../images/delete.png")}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>}
+        />
+      </View>
     </SafeAreaView>
   );
 };

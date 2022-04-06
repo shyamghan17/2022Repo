@@ -7,6 +7,7 @@ export const DataProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState();
   const [dataList, setDataList] = useState([]);
+  const [OrderItems, setOrderItems] = useState([])
 
   const cartItems = JSON.stringify(cart);
 
@@ -57,7 +58,9 @@ export const DataProvider = ({ children }) => {
         table,
         setTable,
         dataList,
-        setDataList
+        setDataList,
+        setOrderItems,
+        OrderItems
       }}
     >
       {children}

@@ -1,25 +1,20 @@
-import {
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity
-} from "react-native";
-import React from "react";
-import { styles} from "../components/styles";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import React from 'react'
 
-const PrintScreen = ({ navigation, route }) => {
-  const { printList: item } = route.params;
+const PrintScreen = ({navigation}) => {
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text>PrintScreen</Text>
+    <View>
+      <Text>PrintScreen</Text>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Image
+                style={{ height: 30, width: 30 }}
+                source={require("../images/forward.png")}
+              />
+            </TouchableOpacity>
+    </View>
+  )
+}
 
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Text>press me to go home</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
+export default PrintScreen
 
-export default PrintScreen;
+const styles = StyleSheet.create({})
