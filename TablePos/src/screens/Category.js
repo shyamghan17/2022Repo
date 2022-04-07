@@ -19,7 +19,7 @@ const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } = useContext(DataContext);
-  console.log(cart, 'cart items');
+  // console.log(cart, 'cart items');
 
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
@@ -75,24 +75,17 @@ const Category = ({ navigation, route }) => {
       ] 
     };
 
-    
    
-    const SetTable =({cart, table, item})=>{
-      // if (cart.tableNum == table){ 
-  
-      //   setCart([...cart.tableNum, OrderMenu])
-      // }
-      // if (cart.tableNum !== table){
-        setCart([...cart, OrderItems])
-      // }
-     
+    const AddItemsToTheCart =()=>{
+      setCart([...menuItems, OrderMenu]);
+ 
       
     }
 
     return (
       <TouchableOpacity
         key={item.id}
-        onPress={SetTable(item)}
+        onPress={AddItemsToTheCart}
       >
         <View style={styles.itemList}>
 
@@ -116,8 +109,9 @@ const Category = ({ navigation, route }) => {
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
+ 
     
-     {/* <View style={styles.container}>
+    <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Image
             style={{ height: 30, width: 30 }}
@@ -161,7 +155,7 @@ const Category = ({ navigation, route }) => {
           keyExtractor={item => item.id}
           renderItem={renderItem}
         />
-      </View> */}
+      </View> 
     </SafeAreaView>
   );
 };

@@ -24,18 +24,17 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const goToCart = () => {
- 
-    if (cart.tableNum == table) {
-      navigation.navigate("Print");
-      console.log(cart, 'table selected');
+    if (cart.some((items) => items.tableNum == table)) {
+      navigation.navigate("Categories");
+      console.log(cart, "table selected");
     } else {
-      setCart([...cart, OrderItems])
-
+      setCart([...cart, OrderItems]);
       setCartItems();
-      console.log(cart, 'table Added');
+      console.log(cart, "table Added");
       navigation.navigate("Categories");
     }
   };
+ 
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: "#CCE3DE", marginTop: 21 }}
