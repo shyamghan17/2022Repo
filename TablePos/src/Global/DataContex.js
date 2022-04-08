@@ -1,12 +1,11 @@
 import React, { useEffect, useState, createContext, useReducer } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState();
-  const [dataList, setDataList] = useState([]);
+
   const [OrderItems, setOrderItems] = useState([])
 
   const cartItems = JSON.stringify(cart);
@@ -37,7 +36,6 @@ export const DataProvider = ({ children }) => {
   }, []);
   
   const completeTask = (id) => {
-    // let dataCart = cart
     setCart(cart.filter(x => x.id != id))
     this.setCartItems()
   };
@@ -58,8 +56,6 @@ export const DataProvider = ({ children }) => {
         completeTask,
         table,
         setTable,
-        dataList,
-        setDataList,
         setOrderItems,
         OrderItems
       }}

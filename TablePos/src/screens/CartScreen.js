@@ -10,32 +10,37 @@ import React, { useContext, useState, useEffect } from "react";
 import { styles } from "../components/styles";
 import DataContext from "../Global/DataContex";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
 
 const CartScreen = ({ navigation }) => {
+  const [dataList, setDataList] = useState([]);
   const {
     table,
-    dataList,
-    setDataList,
     cart,
     completeTask,
     setTable
   } = useContext(DataContext);
 
+
+
+  let DataList = dataList.find(o => o.tableNum === table);
+  console.log(DataList, 'dataList');
+
   const setStatusFilter = table => {
     if (table !== "") {
-      setDataList(cart.filter(elements => elements.table === table));
+      setDataList(cart.filter(elements => elements.tableNum === table));
     }
   };
 
   const newArray = [];
   cart.forEach(obj => {
-    if (!newArray.some(o => o.table === obj.table)) {
+    if (!newArray.some(o => o.tableNum === obj.tableNum)) {
       newArray.push({ ...obj });
     }
   });
 
   const sortedArray = newArray.sort(
-    (a, b) => a.table.toLowerCase() > b.table.toLowerCase()
+    (a, b) => a.tableNum.toLowerCase() > b.tableNum.toLowerCase()
   );
 
   let total = dataList.reduce((currentTotal, item) => {
@@ -60,7 +65,7 @@ const CartScreen = ({ navigation }) => {
       >
         <View style={styles.cateItems}>
           <Text style={styles.textColorBlack}>
-            {item.table}
+            {item.tableNum}
           </Text>
         </View>
       </TouchableOpacity>
@@ -71,10 +76,7 @@ const CartScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
       <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-          <Image
-            style={{ height: 30, width: 30 }}
-            source={require("../images/back.png")}
-          />
+        <AntDesign name="caretleft" size={24} color="black" />
         </TouchableOpacity>
 
         <Text style={styles.headerText}>
@@ -82,10 +84,7 @@ const CartScreen = ({ navigation }) => {
         </Text>
 
         <TouchableOpacity onPress={() => navigation.navigate("Print")}>
-          <Image
-            style={{ height: 30, width: 30 }}
-            source={require("../images/forward.png")}
-          />
+        <AntDesign name="caretright" size={24} color="black" />
         </TouchableOpacity>
       </View>
 
@@ -106,13 +105,13 @@ const CartScreen = ({ navigation }) => {
       >
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={dataList}
+          data={DataList}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) =>
             <View key={index} style={styles.itemList}>
               <View>
                 <Text style={styles.textColorWhite}>
-                  {item.name}
+                  {item.items}
                 </Text>
                 <Text style={styles.textColorWhite}>
                   {item.id}

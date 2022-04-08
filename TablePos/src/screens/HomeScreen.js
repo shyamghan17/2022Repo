@@ -12,15 +12,16 @@ import * as TABLE from "../data/TablesList";
 import DataContext from "../Global/DataContex";
 import TableComponent from "../components/TableComponent";
 import { styles } from "../components/styles";
+import { AntDesign } from '@expo/vector-icons';
 
 const HomeScreen = ({ navigation }) => {
-  const { setTable, table, setCart, cart, setCartItems } =
+  const { setTable, table, setCart, cart, setCartItems, OrderItems } =
     useContext(DataContext);
 
-  const OrderItems = {
+  const OrderItem = {
     tableNum: table,
     orderNumber: Math.floor(1000 + Math.random() * 9000),
-    items: null,
+    items: OrderItems,
   };
 
   const goToCart = () => {
@@ -28,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
       navigation.navigate("Categories");
       console.log(cart, "table selected");
     } else {
-      setCart([...cart, OrderItems]);
+      setCart([...cart, OrderItem]);
       setCartItems();
       console.log(cart, "table Added");
       navigation.navigate("Categories");
@@ -46,10 +47,7 @@ const HomeScreen = ({ navigation }) => {
         ) : null}
         {table ? (
           <TouchableOpacity onPress={goToCart}>
-            <Image
-              style={{ height: 30, width: 30 }}
-              source={require("../images/forward.png")}
-            />
+          <AntDesign name="caretright" size={24} color="black" />
           </TouchableOpacity>
         ) : null}
       </View>

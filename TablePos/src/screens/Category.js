@@ -13,19 +13,18 @@ import * as MENU from "../data/ItemList";
 import Title from "../components/Title";
 import DataContext from "../Global/DataContex";
 import { styles } from "../components/styles";
-
+import { AntDesign } from '@expo/vector-icons';
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } = useContext(DataContext);
+
   // console.log(cart, 'cart items');
 
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
-  const [menuItems, setMenuItem] = useState([])
-
-  //categories filtering method
+  
 
   const setStatusFilter = category => {
     if (category !== "All") {
@@ -64,20 +63,16 @@ const Category = ({ navigation, route }) => {
   // Menu list render Component
   const renderItem = ({ item}) => {
     const OrderMenu = {                                                                                                                              
-      items: [
-        {
           item: item.name,
           category: item.Category,
           price: item.price,
           quantity: 0,
           id: item.id
-        },
-      ] 
     };
 
    
     const AddItemsToTheCart =()=>{
-      setCart([...menuItems, OrderMenu]);
+      setOrderItems([...OrderItems, OrderMenu]);
  
       
     }
@@ -113,10 +108,7 @@ const Category = ({ navigation, route }) => {
     
     <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image
-            style={{ height: 30, width: 30 }}
-            source={require("../images/back.png")}
-          />
+        <AntDesign name="caretleft" size={24} color="black" />
         </TouchableOpacity>
 
         <Text style={styles.headerText}>Categories:</Text>
@@ -127,10 +119,7 @@ const Category = ({ navigation, route }) => {
             </Text>
           : null}
         <TouchableOpacity onPress={goToCart}>
-          <Image
-            style={{ height: 30, width: 30 }}
-            source={require("../images/forward.png")}
-          />
+        <AntDesign name="caretright" size={24} color="black" />
         </TouchableOpacity>
       </View>
 
