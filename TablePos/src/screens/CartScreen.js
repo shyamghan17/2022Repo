@@ -24,7 +24,7 @@ const CartScreen = ({ navigation }) => {
 
 
   let DataList = dataList.find(o => o.tableNum === table);
-  console.log(DataList, 'dataList');
+ 
 
   const setStatusFilter = table => {
     if (table !== "") {
@@ -32,16 +32,18 @@ const CartScreen = ({ navigation }) => {
     }
   };
 
-  const newArray = [];
-  cart.forEach(obj => {
-    if (!newArray.some(o => o.tableNum === obj.tableNum)) {
-      newArray.push({ ...obj });
-    }
-  });
+  console.log(DataList, 'dataList');
 
-  const sortedArray = newArray.sort(
-    (a, b) => a.tableNum.toLowerCase() > b.tableNum.toLowerCase()
-  );
+//   const newArray = [];
+//   cart.forEach(obj => {
+//     if (!newArray.some(o => o.tableNum === obj.tableNum)) {
+//       newArray.push({ ...obj });
+//     }
+//   });
+// console.log(newArray, ' new array ');
+//   const sortedArray = newArray.sort(
+//     (a, b) => a.tableNum.toLowerCase() > b.tableNum.toLowerCase()
+//   );
 
   let total = dataList.reduce((currentTotal, item) => {
     return item.price + currentTotal;
@@ -67,6 +69,7 @@ const CartScreen = ({ navigation }) => {
           <Text style={styles.textColorBlack}>
             {item.tableNum}
           </Text>
+          
         </View>
       </TouchableOpacity>
     );
@@ -91,7 +94,7 @@ const CartScreen = ({ navigation }) => {
       <View style={styles.catList}>
         <FlatList
           showsHorizontalScrollIndicator={false}
-          data={sortedArray}
+          data={cart}
           keyExtractor={(item, index) => index.toString()}
           renderItem={renderCatagory}
           horizontal={true}

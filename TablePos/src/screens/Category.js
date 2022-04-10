@@ -61,7 +61,7 @@ const Category = ({ navigation, route }) => {
   };
   
   // Menu list render Component
-  const renderItem = ({ item}) => {
+  const renderItem = ({ item, index}) => {
     const OrderMenu = {                                                                                                                              
           item: item.name,
           category: item.Category,
@@ -73,9 +73,9 @@ const Category = ({ navigation, route }) => {
    
     const AddItemsToTheCart =()=>{
       setOrderItems([...OrderItems, OrderMenu]);
- 
       
     }
+
 
     return (
       <TouchableOpacity
@@ -83,9 +83,9 @@ const Category = ({ navigation, route }) => {
         onPress={AddItemsToTheCart}
       >
         <View style={styles.itemList}>
-
+     
             <Text style={styles.textColorWhite}>
-              {item.name}
+            {index + 1}:  {item.name}
             </Text>
             
             <Text style={styles.textColorWhite}>
@@ -99,6 +99,8 @@ const Category = ({ navigation, route }) => {
     );
   };
   const goToCart = () => {
+
+
     setCartItems();
     navigation.navigate("Cart");
   };
@@ -141,7 +143,7 @@ const Category = ({ navigation, route }) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={sordedDataList}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index)=> item.id}
           renderItem={renderItem}
         />
       </View> 

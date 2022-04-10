@@ -15,19 +15,23 @@ import { styles } from "../components/styles";
 import { AntDesign } from '@expo/vector-icons';
 
 const HomeScreen = ({ navigation }) => {
-  const { setTable, table, setCart, cart, setCartItems, OrderItems } =
+  const { setTable, table, setCart, cart, setCartItems } =
     useContext(DataContext);
 
-  const OrderItem = {
-    tableNum: table,
-    orderNumber: Math.floor(1000 + Math.random() * 9000),
-    items: OrderItems,
-  };
+
+ 
 
   const goToCart = () => {
+
+    const OrderItem = {
+      tableNum: table,
+      orderNumber: Math.floor(1000 + Math.random() * 9000),
+      items: [],
+    };
+     
     if (cart.some((items) => items.tableNum == table)) {
       navigation.navigate("Categories");
-      console.log(cart, "table selected");
+      // console.log(cart, "table selected");
     } else {
       setCart([...cart, OrderItem]);
       setCartItems();
@@ -35,7 +39,9 @@ const HomeScreen = ({ navigation }) => {
       navigation.navigate("Categories");
     }
   };
- 
+  
+  console.log(cart, ' prder ote,s ');
+
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: "#CCE3DE", marginTop: 21 }}

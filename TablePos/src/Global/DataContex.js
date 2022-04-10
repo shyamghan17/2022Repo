@@ -24,10 +24,10 @@ export const DataProvider = ({ children }) => {
 
       if (cartItems !== null) {
         setCart(JSON.parse(cartItems));
-        console.log( cartItems,"reading data ");
+        // console.log( cartItems,"reading data ");
       }
     } catch (error) {
-      console.log("reading data error");
+      // console.log("reading data error");
     }
   };
 
