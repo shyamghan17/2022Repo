@@ -40,6 +40,7 @@ export const DataProvider = ({ children }) => {
     this.setCartItems()
   };
 
+  console.log(table, 'tabnles');
 
   // const completeTask = (cart, item)=>{
   //   let newArray= [cart]

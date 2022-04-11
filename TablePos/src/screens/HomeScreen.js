@@ -12,35 +12,33 @@ import * as TABLE from "../data/TablesList";
 import DataContext from "../Global/DataContex";
 import TableComponent from "../components/TableComponent";
 import { styles } from "../components/styles";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
 const HomeScreen = ({ navigation }) => {
   const { setTable, table, setCart, cart, setCartItems } =
     useContext(DataContext);
-
-
- 
+    console.log(table, 'table');
 
   const goToCart = () => {
-
     const OrderItem = {
-      tableNum: table,
+      id: table.id,
+      // tableNum: table.title,
       orderNumber: Math.floor(1000 + Math.random() * 9000),
       items: [],
     };
-     
+
     if (cart.some((items) => items.tableNum == table)) {
       navigation.navigate("Categories");
       // console.log(cart, "table selected");
     } else {
       setCart([...cart, OrderItem]);
       setCartItems();
-      console.log(cart, "table Added");
+      // console.log(cart, "table Added");
       navigation.navigate("Categories");
     }
   };
-  
-  console.log(cart, ' prder ote,s ');
+
+  console.log(table, " prder ote,s ");
 
   return (
     <SafeAreaView
@@ -53,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
         ) : null}
         {table ? (
           <TouchableOpacity onPress={goToCart}>
-          <AntDesign name="caretright" size={24} color="black" />
+            <AntDesign name="caretright" size={24} color="black" />
           </TouchableOpacity>
         ) : null}
       </View>
@@ -76,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
           horizontal={false}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => setTable(item.title)}>
+            <TouchableOpacity onPress={() => setTable(item.id)}>
               <TableComponent title={item.title} />
             </TouchableOpacity>
           )}
