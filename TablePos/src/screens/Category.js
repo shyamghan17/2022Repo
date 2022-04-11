@@ -40,10 +40,14 @@ const Category = ({ navigation, route }) => {
   const sortedArray = newArray.sort(
     (a, b) => a.Category.toLowerCase() > b.Category.toLowerCase()
   );
-
   const sordedDataList = dataList.sort(
     (a, b) => a.name.toLowerCase() > b.name.toLowerCase()
   );
+
+
+
+
+
   // Category list render Component
   const renderCatagory = ({ item }) => {
     return (
@@ -60,6 +64,15 @@ const Category = ({ navigation, route }) => {
     );
   };
   
+//   const  getObjectIndex = (table) =>
+// {
+//     for (i = 0; i < cart.length; i++) {
+//        obj = cart[i];
+//        if (obj.hasOwnProperty('tableNum') && obj.tableNum == table) {
+//           return i;
+//        }
+//     }
+// }
   // Menu list render Component
   const renderItem = ({ item, index}) => {
     const OrderMenu = {                                                                                                                              
@@ -69,13 +82,20 @@ const Category = ({ navigation, route }) => {
           quantity: 0,
           id: item.id
     };
-
    
     const AddItemsToTheCart =()=>{
-      setOrderItems([...OrderItems, OrderMenu]);
+      for (i = 0; i < cart.length; i++) {
+        obj = cart[i];
+        if (obj.hasOwnProperty('tableNum') && obj.tableNum == table) {
+           return console.log(1, 'iiiiiiiiiiiiiiiiiii');;
+        }
+     }
+    //  setCart(cart[i].items.push(OrderMenu))
       
     }
 
+  
+    console.log(cart, 'carts items ');
 
     return (
       <TouchableOpacity
