@@ -47,4 +47,9 @@ export const TablesList = [
     orderNumber: 3351,
     tableNum: "Table 2",
   },
+  {
+    items: [],
+    orderNumber: 3355,
+    tableNum: "Table 3",
+  },
 ];

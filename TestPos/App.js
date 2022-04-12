@@ -26,18 +26,15 @@ const App = () => {
   // }, [table, selectedProduct]);
 
   const AddItemsInTheCart = ({ item }) => {
-    const AddItemsInTheCartOnPress = () => {
-      var array = cart,
-        result = array.findIndex(function (object) {
-          return object.tableNum === table;
-        });
-
-      console.log(result);
-      Alert.alert("hello world", result);
-    };
+    const result = cart.findIndex((object) => {
+      return object.tableNum === table;
+    });
+    let addedItems = cart[result].items.push(item);
+    setCart(addedItems);
+    console.log(cart, "itemInCart");
 
     return (
-      <TouchableOpacity onPress={AddItemsInTheCartOnPress}>
+      <TouchableOpacity onPress={AddItemsInTheCart}>
         <Text
           style={{
             borderRadius: 10,
