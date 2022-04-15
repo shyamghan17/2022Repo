@@ -25,13 +25,24 @@ const App = () => {
   //   }
   // }, [table, selectedProduct]);
 
-  const AddItemsInTheCart = ({ item }) => {
-    const result = cart.findIndex((object) => {
-      return object.tableNum === table;
-    });
-    let addedItems = cart[result].items.push(item);
-    setCart(addedItems);
-    console.log(cart, "itemInCart");
+  const RenderItems = ({ item }) => {
+       const ItemsToAdd = {
+         id: item.id,
+         name: item.name,
+         category: item.category,
+         price: item.price
+       }
+    const AddItemsInTheCart = ()=>{
+      // console.log( item,'item');
+      let addedItems = cart;
+      if(table){
+        let foundIndex = cart.findIndex((X)=> X.tableNum === table)
+        addedItems[foundIndex].items = [...addedItems.items, ItemsToAdd]
+        console.log(addedItems, "itemInCart");
+    }
+
+  }
+    
 
     return (
       <TouchableOpacity onPress={AddItemsInTheCart}>
@@ -142,7 +153,7 @@ const App = () => {
       <FlatList
         data={MENU.ItemList}
         keyExtractor={(item) => item.name}
-        renderItem={AddItemsInTheCart}
+        renderItem={RenderItems}
       />
     </View>
   );
