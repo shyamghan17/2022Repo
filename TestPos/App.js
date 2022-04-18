@@ -14,7 +14,57 @@ import * as MENU from "./src/data/ItemList";
 import * as CART from "./src/data/TablesList";
 
 const App = () => {
-  const [cart, setCart] = React.useState(CART.TablesList);
+  const [cart, setCart] = React.useState(
+    [
+        {
+          items: [
+            {
+              category: "Drinks",
+              id: 145,
+              item: "Batida de Coco",
+              price: 1.9,
+              quantity: 0,
+            },
+            {
+              category: "Pasta",
+              id: 285,
+              item: "Beef-Carne",
+              price: 6.9,
+              quantity: 0,
+            },
+      
+            {
+              category: "Arriba- Spezialitäten",
+              id: 254,
+              item: "200g** Bistec Ranchero",
+              price: 13.9,
+              quantity: 0,
+            },
+          ],
+          orderNumber: 1023,
+          tableNum: "Table 10",
+        },
+        {
+          items: [
+            {
+              category: "Getränke-Hot Drinks",
+              id: 316,
+              item: "BIO GRÜNTEE JASMIN Blatt",
+              price: 2.9,
+              quantity: 0,
+            },
+            {
+              category: "Pescado-Fischgerichte",
+              id: 299,
+              item: " Salmone California",
+              price: 13.5,
+              quantity: 0,
+            },
+          ],
+          orderNumber: 3351,
+          tableNum: "Table 2",
+        },
+  ]);
   const [table, setTable] = React.useState("Table 2");
   const [selectedProduct, setSelectedProduct] = React.useState();
 
@@ -28,20 +78,32 @@ const App = () => {
   const RenderItems = ({ item }) => {
        const ItemsToAdd = {
          id: item.id,
-         name: item.name,
-         category: item.category,
+         item: item.name,
+         category: item.Category,
          price: item.price
        }
-    const AddItemsInTheCart = ()=>{
-      // console.log( item,'item');
-      let addedItems = cart;
+    //    console.log('Item to add',ItemsToAdd);
+    const AddItemsInTheCart = ()=> {
+        let addedItems = cart;
       if(table){
-        let foundIndex = cart.findIndex((X)=> X.tableNum === table)
-        addedItems[foundIndex].items = [...addedItems.items, ItemsToAdd]
-        console.log(addedItems, "itemInCart");
+        let foundIndex = cart?.findIndex((X)=> X.tableNum === table)
+        console.log(foundIndex,'foundIndex');
+        // console.log(addedItems[foundIndex].items,'addedItems[foundIndex].items before');
+        addedItems[foundIndex].items.push(ItemsToAdd);
+        // console.log(addedItems,'addedItems after');
+        setCart( addedItems)
+    
+        // setCart([...cart, addedItems])
+        // setCart(addedItems[foundIndex].items.push({
+        //     ...cart,
+        //     ItemsToAdd
+        // }))
+        // console.log( addedItems[foundIndex].items,' addedItems[foundIndex].items after');
     }
 
   }
+
+//   console.log(cart,'cart');
     
 
     return (
