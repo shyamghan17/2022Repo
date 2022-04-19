@@ -17,12 +17,11 @@ import { AntDesign } from "@expo/vector-icons";
 const HomeScreen = ({ navigation }) => {
   const { setTable, table, setCart, cart, setCartItems } =
     useContext(DataContext);
-    console.log(table, 'table');
+    // console.log(table, 'table');
 
   const goToCart = () => {
     const OrderItem = {
-      id: table.id,
-      // tableNum: table.title,
+      tableNum: table,
       orderNumber: Math.floor(1000 + Math.random() * 9000),
       items: [],
     };
@@ -38,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  console.log(table, " prder ote,s ");
+//   console.log(table, " prder ote,s ");
 
   return (
     <SafeAreaView
@@ -74,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
           horizontal={false}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => setTable(item.id)}>
+            <TouchableOpacity onPress={() => setTable(item.title)}>
               <TableComponent title={item.title} />
             </TouchableOpacity>
           )}

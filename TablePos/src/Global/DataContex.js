@@ -1,26 +1,26 @@
-import React, { useEffect, useState, createContext, useReducer } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState, createContext, useReducer } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState();
 
-  const [OrderItems, setOrderItems] = useState([])
+  const [OrderItems, setOrderItems] = useState([]);
 
   const cartItems = JSON.stringify(cart);
 
   setCartItems = async () => {
     try {
-      await AsyncStorage.setItem("cartItems", cartItems);
+      await AsyncStorage.setItem('cartItems', cartItems);
     } catch (error) {
-      console.log("adding data error");
+      console.log('adding data error');
     }
   };
 
   const getItemStorage = async () => {
     try {
-      const cartItems = await AsyncStorage.getItem("cartItems");
+      const cartItems = await AsyncStorage.getItem('cartItems');
 
       if (cartItems !== null) {
         setCart(JSON.parse(cartItems));
@@ -34,19 +34,11 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     getItemStorage();
   }, []);
-  
+
   const completeTask = (id) => {
-    setCart(cart.filter(x => x.id != id))
-    this.setCartItems()
+    setCart(cart.filter((x) => x.id != id));
+    this.setCartItems();
   };
-
-  console.log(table, 'tabnles');
-
-  // const completeTask = (cart, item)=>{
-  //   let newArray= [cart]
-  //   newArray.splice(item.id, 1)
-  //   return setCart(newArray)
-  // }
 
   return (
     <DataContext.Provider
@@ -58,7 +50,7 @@ export const DataProvider = ({ children }) => {
         table,
         setTable,
         setOrderItems,
-        OrderItems
+        OrderItems,
       }}
     >
       {children}

@@ -6,16 +6,16 @@ import {
   Image,
   Dimensions,
   SafeAreaView,
-} from "react-native";
-import React, { useState, useContext } from "react";
-import * as CATEGORY from "../data/CategeoryList";
-import * as MENU from "../data/ItemList";
-import Title from "../components/Title";
-import DataContext from "../Global/DataContex";
-import { styles } from "../components/styles";
-import { AntDesign } from "@expo/vector-icons";
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+} from 'react-native';
+import React, { useState, useContext } from 'react';
+import * as CATEGORY from '../data/CategeoryList';
+import * as MENU from '../data/ItemList';
+import Title from '../components/Title';
+import DataContext from '../Global/DataContex';
+import { styles } from '../components/styles';
+import { AntDesign } from '@expo/vector-icons';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Category = ({ navigation, route }) => {
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } =
@@ -23,11 +23,11 @@ const Category = ({ navigation, route }) => {
 
   // console.log(cart, 'cart items');
 
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState('All');
   const [dataList, setDataList] = useState(MENU.ItemList);
 
   const setStatusFilter = (category) => {
-    if (category !== "All") {
+    if (category !== 'All') {
       setDataList([
         ...MENU.ItemList.filter((elements) => elements.Category === category),
       ]);
@@ -58,43 +58,30 @@ const Category = ({ navigation, route }) => {
     );
   };
 
-  //   const  getObjectIndex = (table) =>
-  // {
-  //     for (i = 0; i < cart.length; i++) {
-  //        obj = cart[i];
-  //        if (obj.hasOwnProperty('tableNum') && obj.tableNum == table) {
-  //           return i;
-  //        }
-  //     }
-  // }
-  // Menu list render Component
-  const renderItem = ({ item, index }) => {
-    const OrderMenu = {
+  const RenderItems = ({ item }) => {
+    const ItemsToAdd = {
+      id: item.id,
       item: item.name,
       category: item.Category,
       price: item.price,
-      quantity: 0,
-      id: item.id,
+      quantity: 1,
     };
 
-    const AddItemsToTheCart = () => {
-      for (i = 0; i < cart.length; i++) {
-        obj = cart[i];
-        if (obj.hasOwnProperty("tableNum") && obj.tableNum == table) {
-          return console.log(1, "iiiiiiiiiiiiiiiiiii");
-        }
+    const AddItemsInTheCart = () => {
+      let addedItems = cart;
+      if (table) {
+        let foundIndex = cart?.findIndex((X) => X.tableNum === table);
+        console.log(foundIndex, 'foundIndex');
+        addedItems[foundIndex].items.push(ItemsToAdd);
+        // console.log(addedItems,'addedItems after');
+        setCart(addedItems);
       }
-      //  setCart(cart[i].items.push(OrderMenu))
     };
-
-    console.log(cart, "carts items ");
 
     return (
-      <TouchableOpacity key={item.id} onPress={AddItemsToTheCart}>
+      <TouchableOpacity key={item.id} onPress={AddItemsInTheCart}>
         <View style={styles.itemList}>
-          <Text style={styles.textColorWhite}>
-            {index + 1}: {item.name}
-          </Text>
+          <Text style={styles.textColorWhite}>{item.name}</Text>
 
           <Text style={styles.textColorWhite}>$: {item.price}</Text>
         </View>
@@ -103,20 +90,20 @@ const Category = ({ navigation, route }) => {
   };
   const goToCart = () => {
     setCartItems();
-    navigation.navigate("Cart");
+    navigation.navigate('Cart');
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#CCE3DE' }}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <AntDesign name="caretleft" size={24} color="black" />
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <AntDesign name='caretleft' size={24} color='black' />
         </TouchableOpacity>
 
         <Text style={styles.headerText}>Categories:</Text>
 
         {table ? <Text style={styles.headerText}>{table}</Text> : null}
         <TouchableOpacity onPress={goToCart}>
-          <AntDesign name="caretright" size={24} color="black" />
+          <AntDesign name='caretright' size={24} color='black' />
         </TouchableOpacity>
       </View>
 
@@ -131,15 +118,15 @@ const Category = ({ navigation, route }) => {
       </View>
       <View
         style={{
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <FlatList
           showsVerticalScrollIndicator={false}
           data={sordedDataList}
           keyExtractor={(item, index) => item.id}
-          renderItem={renderItem}
+          renderItem={RenderItems}
         />
       </View>
     </SafeAreaView>
