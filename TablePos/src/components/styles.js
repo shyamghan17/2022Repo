@@ -6,9 +6,8 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
-
   container: {
-    marginTop:40,
+    marginTop: 40,
     marginHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
@@ -23,11 +22,13 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: -0.1, height: 2 },
     shadowOpacity: 0.9,
     shadowRadius: 10,
-    elevation: 15
+    elevation: 15,
   },
 
-  headerText:{
-   fontSize: 14, fontWeight: "bold", padding: 10 
+  headerText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "Hujan",
   },
   tableComponent: {
     height: 80,
@@ -44,23 +45,23 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: -0.1, height: 2 },
     shadowOpacity: 0.9,
     shadowRadius: 10,
-    elevation: 15
+    elevation: 15,
   },
   title: {
     margin: 5,
     justifyContent: "center",
     alignItems: "center",
-    padding: 10
+    padding: 10,
   },
   titleText: {
     fontWeight: "bold",
     fontSize: 18,
-    color: COLOR.TITLE_TEXT
+    color: COLOR.TITLE_TEXT,
   },
 
   imageStyle: {
     height: 30,
-    width: 30
+    width: 30,
   },
   navigationComponent: {
     marginTop: 5,
@@ -75,29 +76,28 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 15
+    elevation: 15,
   },
   catList: {
     flexDirection: "row",
-    justifyContent:'center',
-    alignItems:'center',
-   marginHorizontal:13
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 13,
   },
   itemList: {
     flexDirection: "row",
     width: windowWidth - 40,
     backgroundColor: COLOR.ITEM_COLOR,
-    padding: 14,
-    margin: 4,
+    paddingVertical: 15,
+    paddingHorizontal:10,
+    margin:5,
     borderRadius: 12,
     justifyContent: "space-between",
     alignItems: "center",
     shadowColor: "#A4C3B2",
-    shadowOffset: { width:0, height: 2 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.9,
     shadowRadius: 3,
-
-
   },
   tableView: {
     backgroundColor: COLOR.TABLE_BACKGROUND1,
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: COLOR.BorderClo,
-    borderWidth: 1
+    borderWidth: 1,
   },
   tableViewActive: {
     backgroundColor: COLOR.TABLE_BACKGROUND2,
@@ -119,18 +119,19 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: COLOR.BorderClo,
-    borderWidth: 2
+    borderWidth: 2,
   },
 
   tableText: {
+    padding: 10,
     color: COLOR.TABLE_TEXT,
-    fontSize: 16,
-    fontWeight: "500"
+    fontSize: 25,
+    fontFamily: "orange",
   },
   shadowForAll: {
     shadowOpacity: 0.3,
     shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 0.3
+    shadowRadius: 0.3,
   },
   // category list styles
   cateItems: {
@@ -138,15 +139,19 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
-    marginHorizontal:5,
+    marginHorizontal: 5,
     marginVertical: 10,
-    padding: 12
+    padding: 12,
+  },
+  textColorWhite: {
+
+    fontFamily: "SquarePeg",
+    fontSize: 22,
   },
 
- 
- 
-  listText:{
-    fontSize:14,
-    fontWeight:'500'
-  }
+  listText: {
+    fontSize: 22,
+    fontWeight: "500",
+    fontFamily: "Caveat",
+  },
 });

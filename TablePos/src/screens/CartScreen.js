@@ -42,43 +42,50 @@ const CartScreen = ({ navigation }) => {
         }}
       >
         <View style={styles.cateItems}>
-          <Text style={styles.textColorBlack}>{item.tableNum}</Text>
+          <Text style={styles.listText}>{item.tableNum}</Text>
         </View>
       </TouchableOpacity>
     );
   };
 
-  const  RenderItem =({ item, index }) =>{
-   return (
-    <View key={index} style={styles.itemList}>
-      <View>
-        <Text style={styles.textColorWhite}>{item.item}</Text>
-        <Text style={styles.textColorWhite}>$: {item.price}</Text>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity style={{marginHorizontal:5}}>
-        <Ionicons name="ios-remove-circle-outline" size={30} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.textColorWhite}>{item.quantity}</Text>
-        <TouchableOpacity  style={{marginHorizontal:5}}>
-        <Ionicons name="add-circle-outline" size={30} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity  style={{marginHorizontal:5}}
-          onPress={() => {
-            completeTask(item.id);
+  const RenderItem = ({ item, index }) => {
+    return (
+      <View key={index} style={styles.itemList}>
+        <View>
+          <Text style={styles.textColorWhite}>{item.item}</Text>
+          <Text style={styles.textColorWhite}>$: {item.price}</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding:5
           }}
         >
-          <AntDesign name="delete" size={25} color="black" />
-        </TouchableOpacity>
+          <TouchableOpacity style={{ marginHorizontal: 5 }}>
+            <Ionicons
+              name="ios-remove-circle-outline"
+              size={30}
+              color="black"
+            />
+          </TouchableOpacity>
+          <Text style={styles.textColorWhite}>{item.quantity}</Text>
+          <TouchableOpacity style={{ marginHorizontal: 5 }}>
+            <Ionicons name="add-circle-outline" size={30} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ marginHorizontal: 5 }}
+            onPress={() => {
+              completeTask(item.id);
+            }}
+          >
+            <AntDesign name="delete" size={25} color="black" />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  )}
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
@@ -115,7 +122,7 @@ const CartScreen = ({ navigation }) => {
           showsVerticalScrollIndicator={false}
           data={dataList}
           keyExtractor={(item, index) => index.toString()}
-         renderItem={RenderItem}
+          renderItem={RenderItem}
         />
       </View>
     </SafeAreaView>

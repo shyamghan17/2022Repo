@@ -10,16 +10,21 @@ import {
 import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
-import Title from "../components/Title";
+
 import DataContext from "../Global/DataContex";
 import { styles } from "../components/styles";
 import { AntDesign } from "@expo/vector-icons";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+
 const Category = ({ navigation, route }) => {
+  
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } =
     useContext(DataContext);
+
+    //fonts 
+    
 
   // console.log(cart, 'cart items');
 

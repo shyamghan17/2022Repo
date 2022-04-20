@@ -14,10 +14,11 @@ import TableComponent from "../components/TableComponent";
 import { styles } from "../components/styles";
 import { AntDesign } from "@expo/vector-icons";
 
+
 const HomeScreen = ({ navigation }) => {
+  
   const { setTable, table, setCart, cart, setCartItems } =
     useContext(DataContext);
-    // console.log(table, 'table');
 
   const goToCart = () => {
     const OrderItem = {
@@ -37,16 +38,20 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-//   console.log(table, " prder ote,s ");
+  //   console.log(table, " prder ote,s ");
 
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: "#CCE3DE", marginTop: 21 }}
     >
       <View style={styles.container}>
-        <Text style={styles.headerText}>Tables</Text>
+        <Text style={[styles.headerText, {fontFamily:'orange'}]}>
+          Tables
+        </Text>
         {table ? (
-          <Text style={styles.headerText}>Selected: {table}</Text>
+          <Text style={styles.headerText}>
+            Selected: {table}
+          </Text>
         ) : null}
         {table ? (
           <TouchableOpacity onPress={goToCart}>
