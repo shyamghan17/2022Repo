@@ -8,6 +8,7 @@ const windowHeight = Dimensions.get("window").height;
 export const styles = StyleSheet.create({
 
   container: {
+    marginTop:40,
     marginHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",

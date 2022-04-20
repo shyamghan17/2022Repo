@@ -10,7 +10,7 @@ export const DataProvider = ({ children }) => {
 
   const cartItems = JSON.stringify(cart);
 
-  setCartItems = async () => {
+  const setCartItems = async () => {
     try {
       await AsyncStorage.setItem('cartItems', cartItems);
     } catch (error) {
@@ -20,10 +20,13 @@ export const DataProvider = ({ children }) => {
 
   const getItemStorage = async () => {
     try {
-      const cartItems = await AsyncStorage.getItem('cartItems');
+      const cartItems = await AsyncStorage.setItem('cartItems');
+
 
       if (cartItems !== null) {
         setCart(JSON.parse(cartItems));
+        
+// console.log(cart, 'cart cart');
         // console.log( cartItems,"reading data ");
       }
     } catch (error) {

@@ -6,16 +6,16 @@ import {
   Image,
   Dimensions,
   SafeAreaView,
-} from 'react-native';
-import React, { useState, useContext } from 'react';
-import * as CATEGORY from '../data/CategeoryList';
-import * as MENU from '../data/ItemList';
-import Title from '../components/Title';
-import DataContext from '../Global/DataContex';
-import { styles } from '../components/styles';
-import { AntDesign } from '@expo/vector-icons';
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+} from "react-native";
+import React, { useState, useContext } from "react";
+import * as CATEGORY from "../data/CategeoryList";
+import * as MENU from "../data/ItemList";
+import Title from "../components/Title";
+import DataContext from "../Global/DataContex";
+import { styles } from "../components/styles";
+import { AntDesign } from "@expo/vector-icons";
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } =
@@ -23,11 +23,11 @@ const Category = ({ navigation, route }) => {
 
   // console.log(cart, 'cart items');
 
-  const [category, setCategory] = useState('All');
+  const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
 
   const setStatusFilter = (category) => {
-    if (category !== 'All') {
+    if (category !== "All") {
       setDataList([
         ...MENU.ItemList.filter((elements) => elements.Category === category),
       ]);
@@ -66,16 +66,14 @@ const Category = ({ navigation, route }) => {
       price: item.price,
       quantity: 1,
     };
-
     const AddItemsInTheCart = () => {
       let addedItems = cart;
       if (table) {
         let foundIndex = cart?.findIndex((X) => X.tableNum === table);
-        console.log(foundIndex, 'foundIndex');
+        // console.log(foundIndex, "foundIndex");
         addedItems[foundIndex].items.push(ItemsToAdd);
-        // console.log(addedItems,'addedItems after');
-        setCart(addedItems);
       }
+      setCart(addedItems)
     };
 
     return (
@@ -89,21 +87,22 @@ const Category = ({ navigation, route }) => {
     );
   };
   const goToCart = () => {
+   
     setCartItems();
-    navigation.navigate('Cart');
+    navigation.navigate("Cart");
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#CCE3DE' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <AntDesign name='caretleft' size={24} color='black' />
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <AntDesign name="caretleft" size={24} color="black" />
         </TouchableOpacity>
 
         <Text style={styles.headerText}>Categories:</Text>
 
         {table ? <Text style={styles.headerText}>{table}</Text> : null}
         <TouchableOpacity onPress={goToCart}>
-          <AntDesign name='caretright' size={24} color='black' />
+          <AntDesign name="caretright" size={24} color="black" />
         </TouchableOpacity>
       </View>
 
@@ -118,8 +117,8 @@ const Category = ({ navigation, route }) => {
       </View>
       <View
         style={{
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <FlatList
