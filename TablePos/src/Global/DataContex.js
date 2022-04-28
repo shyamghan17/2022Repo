@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useReducer } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
@@ -26,7 +27,7 @@ export const DataProvider = ({ children }) => {
       if (cartItems !== null) {
         setCart(JSON.parse(cartItems));
         
-// console.log(cart, 'cart cart');
+    // console.log(cart, 'cart cart');
         // console.log( cartItems,"reading data ");
       }
     } catch (error) {
