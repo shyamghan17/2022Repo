@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { styles } from "../components/styles";
-import DataContext from "../Global/DataContex";
+import DataContext from "../context/table-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -60,7 +60,7 @@ const CartScreen = ({ navigation }) => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            padding:5
+            padding: 5,
           }}
         >
           <TouchableOpacity style={{ marginHorizontal: 5 }}>

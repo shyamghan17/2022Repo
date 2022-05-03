@@ -1,8 +1,10 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import StackScreen from "./src/stackNavigation/StackScreen";
-import { DataProvider } from "./src/Global/DataContex";
+// import { DataProvider } from "./src/Global/DataContex";
 import { useFonts } from "expo-font";
+import TableState from "./src/context/TableState";
+
 const App = () => {
   let [fontsLoaded] = useFonts({
     BreeSerif: require("./assets/fonts/BreeSerif-Regular.ttf"),
@@ -13,7 +15,6 @@ const App = () => {
     Hujan: require("./assets/fonts/Hujan.ttf"),
     orange: require("./assets/fonts/orange.ttf"),
     Cafe: require("./assets/fonts/Cafe.ttf"),
-
   });
 
   if (!fontsLoaded) {
@@ -21,11 +22,11 @@ const App = () => {
   }
 
   return (
-    <DataProvider>
+    <TableState>
       <NavigationContainer>
         <StackScreen />
       </NavigationContainer>
-    </DataProvider>
+    </TableState>
   );
 };
 

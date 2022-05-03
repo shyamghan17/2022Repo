@@ -9,14 +9,12 @@ import {
 } from "react-native";
 import React, { useContext } from "react";
 import * as TABLE from "../data/TablesList";
-import DataContext from "../Global/DataContex";
+import DataContext from "../context/table-context";
 import TableComponent from "../components/TableComponent";
 import { styles } from "../components/styles";
 import { AntDesign } from "@expo/vector-icons";
 
-
 const HomeScreen = ({ navigation }) => {
-  
   const { setTable, table, setCart, cart, setCartItems } =
     useContext(DataContext);
 
@@ -45,13 +43,11 @@ const HomeScreen = ({ navigation }) => {
       style={{ flex: 1, backgroundColor: "#CCE3DE", marginTop: 21 }}
     >
       <View style={styles.container}>
-        <Text style={[styles.headerText, {fontFamily:'orange'}]}>
+        <Text style={[styles.headerText, { fontFamily: "orange" }]}>
           Tables
         </Text>
         {table ? (
-          <Text style={styles.headerText}>
-            Selected: {table}
-          </Text>
+          <Text style={styles.headerText}>Selected: {table}</Text>
         ) : null}
         {table ? (
           <TouchableOpacity onPress={goToCart}>

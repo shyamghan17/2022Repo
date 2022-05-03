@@ -11,20 +11,17 @@ import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
 
-import DataContext from "../Global/DataContex";
+import DataContext from "../context/table-context";
 import { styles } from "../components/styles";
 import { AntDesign } from "@expo/vector-icons";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-
 const Category = ({ navigation, route }) => {
-  
   const { setCart, cart, setCartItems, table, OrderItems, setOrderItems } =
     useContext(DataContext);
 
-    //fonts 
-    
+  //fonts
 
   // console.log(cart, 'cart items');
 
@@ -78,7 +75,7 @@ const Category = ({ navigation, route }) => {
         // console.log(foundIndex, "foundIndex");
         addedItems[foundIndex].items.push(ItemsToAdd);
       }
-      setCart(addedItems)
+      setCart(addedItems);
     };
 
     return (
@@ -92,7 +89,6 @@ const Category = ({ navigation, route }) => {
     );
   };
   const goToCart = () => {
-   
     setCartItems();
     navigation.navigate("Cart");
   };
