@@ -1,11 +1,19 @@
-import { ADD_ITEMS, SELECT_TABLE } from "./constant";
+import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./table-actions";
 
 const PosReducer = (state, action) => {
   switch (action.type) {
-    case ADD_ITEMS:
+    case ADD_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
+    case TOGGLE_TODO:
       return {};
-    case SELECT_TABLE:
+
+    case DELETE_TODO:
       return {};
+    default:
+      return state;
   }
 };
 export default PosReducer;

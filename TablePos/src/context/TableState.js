@@ -1,32 +1,43 @@
 import React, { useReducer } from "react";
-import { SELECT_TABLE, ADD_ITEMS } from "./constant";
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from "./table-actions";
 
 import DataContex from "./table-context";
 import PosReducer from "./table-reducer";
 
 const TableState = (props) => {
   const initialState = {
-    items: [], // id, item, tableNum,
+    todos: [],
   };
-  const [state, dispatch] = useReducer(PosReducer.initialState);
+  const [state, dispatch] = useReducer(PosReducer, initialState);
 
-  //select table
-  const selectTable = () => {
+  //add todos
+  const addTodo = (todo) => {
     dispatch({
-      type: SELECT_TABLE,
-      payload: "table",
+      type: ADD_TODO,
+      payload: todo,
     });
   };
-  const addItems = (items) => {
+
+  //toggle todos
+  const toggleTodo = (todoID) => {
     dispatch({
-      type: ADD_ITEMS,
-      payload: items,
+      type: TOGGLE_TODO,
+      payload: todoID,
     });
   };
-  console.log(state.items, "state . items");
+
+  //remove todos
+  const deleteTodd = (todoID) => {
+    dispatch({
+      type: DELETE_TODO,
+      payload: todoID,
+    });
+  };
 
   return (
-    <DataContex.Provider value={{ selectTable, addItems }}>
+    <DataContex.Provider
+      value={{ todos: state.todos, addTodo, toggleTodo, deleteTodd }}
+    >
       {props.children}
     </DataContex.Provider>
   );
