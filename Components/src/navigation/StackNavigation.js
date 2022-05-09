@@ -8,7 +8,11 @@ const StackNavigation = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreens} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreens}
+        options={{title: 'Home Screen'}}
+      />
       {/* <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} /> */}
