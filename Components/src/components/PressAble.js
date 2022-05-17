@@ -11,12 +11,15 @@ const PressAble = ({
   return (
     <View style={styles.constainer}>
       <Pressable
-        style={styles.touchableOpacity}
-        onPressIn={onPressInFinction}
-        onPressOut={onPressOutFunction}
-        onLongPress={onPressLongFunction}
-        onPress={onPressFunction}>
-        <Text style={styles.text}>{label}</Text>
+        style={({pressed}) => [
+          styles.touchableOpacity,
+          {backgroundColor: pressed ? '#8B4513' : '#F4A460'},
+        ]}>
+        {({pressed}) => (
+          <Text style={{color: pressed ? '#fff111' : '#111fff', fontSize: 20}}>
+            {pressed ? 'Pressed!' : 'Press Me'}
+          </Text>
+        )}
       </Pressable>
     </View>
   );
@@ -25,19 +28,16 @@ const PressAble = ({
 export default PressAble;
 
 const styles = StyleSheet.create({
-  constainer: {},
+  // constainer: {flex: 1, position: 'absolute'},
   touchableOpacity: {
-    backgroundColor: '#232323',
-    margin: 20,
-    padding: 20,
+    margin: 10,
+    paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
-    borderWidth: 1.5,
-    borderColor: 'red',
-  },
-  text: {
-    fontSize: 20,
-    color: 'white',
+    borderRadius: 10,
+    shadowColor: '#8B4513',
+    shadowOpacity: 0.9,
+    shadowOffset: {width: 5, height: 10},
+    shadowRadius: 15,
   },
 });

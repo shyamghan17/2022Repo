@@ -14,19 +14,26 @@ const Touchable_Opacity = ({onPress, label}) => {
 export default Touchable_Opacity;
 
 const styles = StyleSheet.create({
-  constainer: {},
+  constainer: {
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
   touchableOpacity: {
-    backgroundColor: '#232323',
-    margin: 20,
-    padding: 20,
+    margin: 10,
+    paddingVertical: 20,
+    backgroundColor: '#F4A460',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
-    borderWidth: 1.5,
-    borderColor: 'red',
+    borderRadius: 10,
+    shadowColor: '#8B4513',
+    shadowOpacity: 0.9,
+    shadowOffset: {width: 5, height: 10},
+    shadowRadius: 15,
   },
   text: {
+    fontStyle: 'italic',
     fontSize: 20,
-    color: 'white',
+    color: '#000',
+    fontWeight: '500',
   },
 });
