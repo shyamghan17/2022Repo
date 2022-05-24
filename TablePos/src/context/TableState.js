@@ -12,26 +12,17 @@ const TableState = (props) => {
 
   //add todos
   const addTodo = (todo) => {
-    dispatch({
-      type: ADD_TODO,
-      payload: todo,
-    });
+    dispatch();
   };
 
   //toggle todos
   const toggleTodo = (todoID) => {
-    dispatch({
-      type: TOGGLE_TODO,
-      payload: todoID,
-    });
+    dispatch();
   };
 
   //remove todos
   const deleteTodd = (todoID) => {
-    dispatch({
-      type: DELETE_TODO,
-      payload: todoID,
-    });
+    dispatch();
   };
 
   return (

@@ -8,7 +8,7 @@ import {
 import React, { useContext, useState, useEffect } from "react";
 import Title from "../components/Title";
 import { styles } from "../components/styles";
-import DataContext from "../Global/DataContex";
+
 import Total from "../components/Total";
 
 const CartScreen = ({ navigation }) => {

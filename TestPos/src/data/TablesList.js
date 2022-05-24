@@ -1,55 +1,86 @@
 export const TablesList = [
   {
-    items: [
-      {
-        category: "Drinks",
-        id: 145,
-        item: "Batida de Coco",
-        price: 1.9,
-        quantity: 0,
-      },
-      {
-        category: "Pasta",
-        id: 285,
-        item: "Beef-Carne",
-        price: 6.9,
-        quantity: 0,
-      },
-
-      {
-        category: "Arriba- Spezialitäten",
-        id: 254,
-        item: "200g** Bistec Ranchero",
-        price: 13.9,
-        quantity: 0,
-      },
-    ],
-    orderNumber: 1023,
-    tableNum: "Table 10",
+    id: 1101,
+    title: "Table 1"
   },
   {
-    items: [
-      {
-        category: "Getränke-Hot Drinks",
-        id: 316,
-        item: "BIO GRÜNTEE JASMIN Blatt",
-        price: 2.9,
-        quantity: 0,
-      },
-      {
-        category: "Pescado-Fischgerichte",
-        id: 299,
-        item: " Salmone California",
-        price: 13.5,
-        quantity: 0,
-      },
-    ],
-    orderNumber: 3351,
-    tableNum: "Table 2",
+    id: 1102,
+    title: "Table 2"
   },
   {
-    items: [],
-    orderNumber: 3355,
-    tableNum: "Table 3",
+    id: 1103,
+    title: "Table 3"
   },
+  {
+    id: 1104,
+    title: "Table 4"
+  },
+  {
+    id: 1105,
+    title: "Table 5"
+  },
+  {
+    id: 1106,
+    title: "Table 6"
+  },
+  {
+    id: 1107,
+    title: "Table 7"
+  },
+  {
+    id: 1108,
+    title: "Table 8"
+  },
+  {
+    id: 1109,
+    title: "Table 9"
+  },
+  {
+    id: 1110,
+    title: "Table 10"
+  },
+  {
+    id: 1111,
+    title: "Table 11"
+  },
+  {
+    id: 1112,
+    title: "Table 12"
+  },
+  {
+    id: 1113,
+    title: "Table 13"
+  },
+  {
+    id: 1114,
+    title: "Table 14"
+  },
+  {
+    id: 1115,
+    title: "Table 15"
+  },
+  {
+    id: 1116,
+    title: "Table 16"
+  },
+  {
+    id: 1117,
+    title: "Table 17"
+  },
+  {
+    id: 1118,
+    title: "Table 18"
+  },
+  {
+    id: 1119,
+    title: "Table 19"
+  },
+  {
+    id: 1120,
+    title: "Table 20"
+  },
+  {
+    id: 1121,
+    title: "Table 21"
+  }
 ];

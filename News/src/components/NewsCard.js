@@ -4,28 +4,36 @@ import {
   Text,
   View,
   Dimensions,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const NewsCard = ({ title, author, description, image }) => {
+const NewsCard = ({
+  title,
+  author,
+  description,
+  image,
+  backgroundColor,
+  shadowColor,
+}) => {
   return (
-    <View style={styles.cardView}>
-      <Text style={styles.title}>
-        {title}
-      </Text>
-      <Text style={styles.author}>
-        {author}
-      </Text>
-      {image == null
-        ? <ActivityIndicator />
-        : <Image style={styles.image} source={image} />}
-      <Text style={styles.description}>
-        {description}
-      </Text>
+    <View
+      style={[
+        styles.cardView,
+        { backgroundColor: backgroundColor, shadowColor: shadowColor },
+      ]}
+    >
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.author}>{author}</Text>
+      {image == null ? (
+        <ActivityIndicator size="large" color={backgroundColor} />
+      ) : (
+        <Image style={styles.image} source={{ uri: image }} />
+      )}
+      <Text style={styles.description}>{description}</Text>
     </View>
   );
 };
@@ -37,31 +45,29 @@ const styles = StyleSheet.create({
     margin: width * 0.02,
     backgroundColor: "white",
     borderRadius: 20,
-    shadowColor: "#000",
     shadowOffset: { width: 0.5, height: 0.5 },
     shadowOpacity: 0.5,
-    shadowRadius: 3
+    shadowRadius: 3,
   },
   title: {
     fontSize: 18,
-    margin: 8,
+    // margin: 8,
     fontWeight: "bold",
-    padding: 8
+    padding: 8,
   },
   author: {
     fontSize: 13,
     margin: 8,
-    color: "#232323"
+    color: "#232323",
   },
   description: {
     fontSize: 15,
     margin: 8,
-    color: "#232323"
+    color: "#232323",
   },
   image: {
-    height: height / 2,
-    width:'99%',
-    margin: 1.5,
-    borderRadius: 8
-  }
+    height: height / 3,
+    margin: 10,
+    borderRadius: 8,
+  },
 });

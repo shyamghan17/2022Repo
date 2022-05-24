@@ -4,37 +4,36 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Dimensions, SafeAreaView
+  Dimensions,
+  SafeAreaView,
 } from "react-native";
 import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
 import Title from "../components/Title";
-import DataContext from "../Global/DataContex";
+
 import { styles } from "../components/styles";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
-  const { setCart, cart, setCartItems, table } = useContext(DataContext);
-
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
 
   //categories filtering method
 
-  const setStatusFilter = category => {
+  const setStatusFilter = (category) => {
     if (category !== "All") {
       setDataList([
-        ...MENU.ItemList.filter(elements => elements.Category === category)
+        ...MENU.ItemList.filter((elements) => elements.Category === category),
       ]);
     } else {
       setDataList(MENU.ItemList);
     }
     setCategory(category);
   };
-  const newArray =CATEGORY.CategoriesList
+  const newArray = CATEGORY.CategoriesList;
   const sortedArray = newArray.sort(
     (a, b) => a.Category.toLowerCase() > b.Category.toLowerCase()
   );
@@ -50,33 +49,30 @@ const Category = ({ navigation, route }) => {
         onPress={() => setStatusFilter(item.Category)}
       >
         <View style={[styles.cateItems, styles.shadowForAll]}>
-          <Text style={styles.textColorBlack}>
-            {item.Category}
-          </Text>
+          <Text style={styles.textColorBlack}>{item.Category}</Text>
         </View>
       </TouchableOpacity>
     );
   };
   // Menu list render Component
   const renderItem = ({ item, index }) => {
-     const OrderItems = {
-       table: table,
-       item: item.id,
-       name: item.name,
-       category: item.Category,
-       price: item.price,
-       id: Math.floor(Date.now())
-     }
+    const OrderItems = {
+      table: table,
+      item: item.id,
+      name: item.name,
+      category: item.Category,
+      price: item.price,
+      id: Math.floor(Date.now()),
+    };
     return (
-      <TouchableOpacity key={item.id} onPress={() => setCart([...cart, OrderItems])}>
+      <TouchableOpacity
+        key={item.id}
+        onPress={() => setCart([...cart, OrderItems])}
+      >
         <View style={styles.itemList}>
           <View>
-            <Text style={styles.textColorWhite}>
-              {item.name}
-            </Text>
-            <Text style={styles.textColorWhite}>
-              $: {item.price}
-            </Text>
+            <Text style={styles.textColorWhite}>{item.name}</Text>
+            <Text style={styles.textColorWhite}>$: {item.price}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -88,46 +84,44 @@ const Category = ({ navigation, route }) => {
   };
   return (
     <SafeAreaView>
+      <View style={styles.container}>
+        <View style={{ flexDirection: "row" }}>
+          <Title title={"Category"} />
+          {table ? <Title title={table} /> : null}
+        </View>
 
-
-    <View style={styles.container}>
-      <View style={{ flexDirection: "row" }}>
-        <Title title={"Category"} />
-        {table ? <Title title={table} /> : null}
-      </View>
-
-      <View style={styles.catList}>
+        <View style={styles.catList}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            data={sortedArray}
+            keyExtractor={(item) => item.id}
+            renderItem={renderCatagory}
+            horizontal={true}
+          />
+        </View>
         <FlatList
-          showsHorizontalScrollIndicator={false}
-          data={sortedArray}
-          keyExtractor={item => item.id}
-          renderItem={renderCatagory}
-          horizontal={true}
+          showsVerticalScrollIndicator={false}
+          data={sordedDataList}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
         />
-      </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={sordedDataList}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-      />
 
-      <View style={styles.buttButtomNav}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image
-            style={styles.imageStyle}
-            source={require("../images/back.png")}
-          />
-        </TouchableOpacity>
+        <View style={styles.buttButtomNav}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Image
+              style={styles.imageStyle}
+              source={require("../images/back.png")}
+            />
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={goToCart}>
-          <Image
-            style={styles.imageStyle}
-            source={require("../images/cart1.png")}
-          />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={goToCart}>
+            <Image
+              style={styles.imageStyle}
+              source={require("../images/cart1.png")}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
     </SafeAreaView>
   );
 };
