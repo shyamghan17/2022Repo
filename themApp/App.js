@@ -1,34 +1,39 @@
-import React, { useState, useReducer } from "react";
-import store from "./src/reduxProvider";
-import HomeScreen from "./src/HomeScreen";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import {
-  CounterContext,
-  initialState,
-  counter,
-} from "./src/ContextApiProvider";
-import ContextScreen from "./src/ContexScreen";
-import { StoreProvider } from "easy-peasy";
-import easyPeasyStore from "./src/easyPeasy";
-const App = () => {
-  const { reduxStore, persister } = store();
-  const [state, dispatch] = useReducer(counter, initialState);
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-  return (
-    <StoreProvider store={easyPeasyStore}>
-      {/* <CounterContext.Provider value={[state, dispatch]}>
-        <PersistGate loading={null} persistor={persister}>
-          {/*  Redux store Porvider 
-          <Provider store={reduxStore}> 
-            <HomeScreen /> */}
-            <ContextScreen />
-          {/* </Provider>
-        </PersistGate>
-      </CounterContext.Provider> */}
-
-    </StoreProvider>
-  );
+import { useFonts } from "expo-font";
+import Home from "./src/screens/Home";
+import Details from "./src/screens/Details";
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "transparent",
+  },
 };
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  const [loaded] = useFonts({
+    InterBold: require("./src/assets/fonts/Inter-Bold.ttf"),
+    InterLignt: require("./src/assets/fonts/Inter-Light.ttf"),
+    InterMedium: require("./src/assets/fonts/Inter-Medium.ttf"),
+    InterRegular: require("./src/assets/fonts/Inter-Regular.ttf"),
+    InterSemiBold: require("./src/assets/fonts/Inter-SemiBold.ttf"),
+  });
+  if (!loaded) return null;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Details" component={Details} />
+        {/* <Stack.Screen name="Home" component={Home} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default App;
