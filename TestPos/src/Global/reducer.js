@@ -1,32 +1,43 @@
 import { initialState } from "./state";
 import { combineReducers, createStore } from "redux";
-const counter = (state = initialState, action) => {
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { persistReducer, persistStore } from "redux-persist";
+
+const POS = (state = initialState, action) => {
+  // console.log('action', action.payload, 'action');
   switch (action.type) {
     case "SELECT_TABLE":
       return {
         ...state,
-        selectedTable: action.payload,
+        cart: action.payload,
       };
-    case "DECREMENT_COUNT":
+    case "ADD_CART_ITEMS":
       return {
         ...state,
+        cart: action.payload,
+      };
+
+    case "DECREMENT_COUNT":
+      return {
+        ...state.count,
         count: state.count - 1,
       };
+
     default:
       return state;
       break;
   }
 };
 
-//root Reducers
+// Persistanche congig
 
-const rootReducer = combineReducers({
-  counter,
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage,
+};
+export const rootReducer = combineReducers({
+  POS,
 });
 
-// redux store
-
-export default () => {
-  let reduxStore = createStore(rootReducer);
-  return { reduxStore };
-};
+// persist Reducer
+export const persistReducers = persistReducer(persistConfig, rootReducer);

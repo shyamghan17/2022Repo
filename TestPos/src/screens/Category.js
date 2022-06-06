@@ -11,6 +11,7 @@ import React, { useState, useContext } from "react";
 import * as CATEGORY from "../data/CategeoryList";
 import * as MENU from "../data/ItemList";
 import Title from "../components/Title";
+import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "../components/styles";
 
@@ -18,10 +19,13 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Category = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.POS);
+  const [table, setSable] = useState(state.selectedTable)
   const [category, setCategory] = useState("All");
   const [dataList, setDataList] = useState(MENU.ItemList);
 
-  //categories filtering method
+
 
   const setStatusFilter = (category) => {
     if (category !== "All") {
@@ -33,6 +37,7 @@ const Category = ({ navigation, route }) => {
     }
     setCategory(category);
   };
+
   const newArray = CATEGORY.CategoriesList;
   const sortedArray = newArray.sort(
     (a, b) => a.Category.toLowerCase() > b.Category.toLowerCase()
@@ -48,8 +53,8 @@ const Category = ({ navigation, route }) => {
         key={item.id}
         onPress={() => setStatusFilter(item.Category)}
       >
-        <View style={[styles.cateItems, styles.shadowForAll]}>
-          <Text style={styles.textColorBlack}>{item.Category}</Text>
+        <View style={styles.cateItems}>
+          <Text style={styles.listText}>{item.Category}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -57,70 +62,73 @@ const Category = ({ navigation, route }) => {
   // Menu list render Component
   const renderItem = ({ item, index }) => {
     const OrderItems = {
-      table: table,
+      quantity: 1,
       item: item.id,
       name: item.name,
       category: item.Category,
       price: item.price,
       id: Math.floor(Date.now()),
     };
+
+    const setCart = () => {
+      const cart = [...state.cart, OrderItems];
+      dispatch({ type: "ADD_CART_ITEMS", payload: cart });
+    };
     return (
-      <TouchableOpacity
-        key={item.id}
-        onPress={() => setCart([...cart, OrderItems])}
-      >
+      <TouchableOpacity key={item.id} onPress={() => setCart(OrderItems)}>
         <View style={styles.itemList}>
-          <View>
-            <Text style={styles.textColorWhite}>{item.name}</Text>
-            <Text style={styles.textColorWhite}>$: {item.price}</Text>
-          </View>
+          <Text style={styles.textColorWhite}>{item.name}</Text>
+
+          <Text style={styles.textColorWhite}>$: {item.price}</Text>
         </View>
       </TouchableOpacity>
     );
   };
   const goToCart = () => {
-    setCartItems();
     navigation.navigate("Cart");
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#CCE3DE" }}>
       <View style={styles.container}>
-        <View style={{ flexDirection: "row" }}>
-          <Title title={"Category"} />
-          {table ? <Title title={table} /> : null}
-        </View>
-
-        <View style={styles.catList}>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            data={sortedArray}
-            keyExtractor={(item) => item.id}
-            renderItem={renderCatagory}
-            horizontal={true}
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("../images/back.png")}
           />
-        </View>
+        </TouchableOpacity>
+
+        <Text style={styles.headerText}>Categories:</Text>
+
+        {table ? <Text style={styles.headerText}>{table}</Text> : null}
+        <TouchableOpacity onPress={goToCart}>
+          <Image
+            style={{ height: 30, width: 30 }}
+            source={require("../images/forward.png")}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.catList}>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          data={sortedArray}
+          keyExtractor={(item) => item.id}
+          renderItem={renderCatagory}
+          horizontal={true}
+        />
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <FlatList
           showsVerticalScrollIndicator={false}
           data={sordedDataList}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
         />
-
-        <View style={styles.buttButtomNav}>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Image
-              style={styles.imageStyle}
-              source={require("../images/back.png")}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={goToCart}>
-            <Image
-              style={styles.imageStyle}
-              source={require("../images/cart1.png")}
-            />
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );

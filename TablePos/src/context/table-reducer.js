@@ -1,16 +1,22 @@
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./table-actions";
+import * as ACTIONS from "./table-actions";
 
-const PosReducer = (state, action) => {
+ const initialState = {
+  selectedTable: 'Please Select Table',
+  todos: []
+};
+
+
+const PosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case "ADD_TODO":
       return {
         ...state,
         todos: [...state.todos, action.payload],
       };
-    case TOGGLE_TODO:
+    case "TOGGLE_TODO":
       return {};
 
-    case DELETE_TODO:
+    case " DELETE_TODO":
       return {};
     default:
       return state;

@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    flex: 1,
     backgroundColor: COLOR.HOME_BACKGROUND
   },
   tableComponent: {

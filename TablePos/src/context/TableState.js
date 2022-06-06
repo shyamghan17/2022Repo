@@ -5,9 +5,7 @@ import DataContex from "./table-context";
 import PosReducer from "./table-reducer";
 
 const TableState = (props) => {
-  const initialState = {
-    todos: [],
-  };
+
   const [state, dispatch] = useReducer(PosReducer, initialState);
 
   //add todos
